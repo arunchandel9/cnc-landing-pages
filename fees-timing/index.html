@@ -58,38 +58,10 @@ p{margin:0}
 .hdr-in{display:flex;align-items:center;gap:24px;height:76px;transition:height .3s}
 .hdr.scrolled .hdr-in{height:64px}
 .logo img{height:40px;width:auto}
-.nav{display:flex;gap:4px;margin-inline:auto;list-style:none;padding:0;margin-block:0}
-.nav>li{position:relative}
-.nav a,.nav button{display:flex;align-items:center;gap:6px;color:#F2EFEC;text-decoration:none;font:500 14.5px/1 var(--head);padding:10px 14px;border-radius:999px;background:none;border:0;cursor:pointer;transition:background .2s,color .2s}
-.nav>li>a:hover,.nav>li>button:hover,.nav>li:focus-within>button{background:rgba(255,255,255,.08)}
-.nav a[aria-current]{color:#fff;background:rgba(180,30,30,.35)}
-.nav .chev{width:10px;height:10px;transition:transform .2s}
-.sub{position:absolute;top:calc(100% + 8px);left:0;min-width:240px;list-style:none;margin:0;padding:8px;background:#141414;border:1px solid rgba(255,255,255,.08);border-radius:var(--r-md);
-  box-shadow:0 20px 40px -12px rgba(0,0,0,.6);opacity:0;visibility:hidden;transform:translateY(-6px);transition:.2s}
-.sub::before{content:"";position:absolute;inset:-10px 0 auto;height:10px}
-.nav li:hover>.sub,.nav li:focus-within>.sub{opacity:1;visibility:visible;transform:none}
-.nav li:hover .chev{transform:rotate(180deg)}
-.sub a{padding:11px 14px;border-radius:var(--r-sm);font-size:14px}
-.sub a:hover{background:rgba(255,255,255,.07);color:#fff}
-.hdr-cta{display:flex;align-items:center;gap:18px}
+.hdr-cta{display:flex;align-items:center;gap:18px;margin-left:auto}
 .phone{display:flex;align-items:center;gap:8px;color:#F2EFEC;text-decoration:none;font:600 14.5px var(--head)}
 .phone svg{color:var(--red-hot)}
-.burger{display:none;background:none;border:0;color:#fff;padding:8px;cursor:pointer;margin-left:auto}
 
-/* Mobile panel */
-.panel{position:fixed;inset:0;z-index:80;visibility:hidden}
-.panel-bg{position:absolute;inset:0;background:rgba(0,0,0,.55);opacity:0;transition:opacity .3s}
-.panel-box{position:absolute;right:0;top:0;bottom:0;width:min(86vw,360px);background:#0c0c0c;padding:20px 20px 28px;transform:translateX(100%);transition:transform .35s cubic-bezier(.2,.8,.2,1);overflow:auto;display:flex;flex-direction:column;gap:6px}
-.panel.open{visibility:visible}.panel.open .panel-bg{opacity:1}.panel.open .panel-box{transform:none}
-.panel-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-.panel-top button{background:rgba(255,255,255,.08);border:0;color:#fff;width:40px;height:40px;border-radius:50%;cursor:pointer}
-.panel a,.panel summary{display:block;color:#F2EFEC;text-decoration:none;font:600 16px var(--head);padding:13px 14px;border-radius:var(--r-sm);cursor:pointer;list-style:none}
-.panel summary::-webkit-details-marker{display:none}
-.panel summary{display:flex;justify-content:space-between;align-items:center}
-.panel details[open] summary .chev{transform:rotate(180deg)}
-.panel details a{font-weight:500;font-size:15px;color:#cfc8c4;padding-left:26px}
-.panel a:hover,.panel summary:hover{background:rgba(255,255,255,.06)}
-.panel .btn{margin-top:18px}
 
 /* Hero */
 .hero{position:relative;overflow:hidden;padding:clamp(88px,12vw,150px) 0 clamp(80px,11vw,140px)}
@@ -147,20 +119,27 @@ p{margin:0}
 /* Fees & Timing */
 .fees{padding-top:0}
 .fees-grid{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:clamp(24px,4vw,48px);align-items:center}
-.proof{background:linear-gradient(160deg,var(--red-hot),var(--red-deep));padding:14px;border-radius:var(--r-lg);box-shadow:var(--shadow-lift);transform:rotate(-1.5deg);transition:transform .4s}
+.proof{position:relative;max-height:560px;overflow:hidden;background:linear-gradient(160deg,var(--red-hot),var(--red-deep));padding:12px;border-radius:var(--r-lg);box-shadow:var(--shadow-lift);transform:rotate(-1.5deg);transition:transform .4s}
 .proof:hover{transform:rotate(0)}
-.proof img{border-radius:var(--r-md);width:100%}
+.proof img{border-radius:var(--r-md);width:100%;pointer-events:none;user-select:none;-webkit-user-drag:none;-webkit-touch-callout:none}
+.proof::after{content:"";position:absolute;left:12px;right:12px;bottom:12px;height:90px;border-radius:0 0 var(--r-md) var(--r-md);background:linear-gradient(transparent,#fff)}
 .mid{display:flex;flex-direction:column;align-items:center;gap:22px}
 .arrow{display:grid;place-items:center;width:64px;height:64px;border-radius:50%;border:2px solid var(--crimson);color:var(--crimson)}
 @media (prefers-reduced-motion:no-preference){.arrow{animation:pulse 2.4s ease-in-out infinite}}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(155,45,45,.35)}50%{box-shadow:0 0 0 14px rgba(155,45,45,0)}}
-.form-card{background:#fff;border-radius:var(--r-lg);padding:clamp(24px,3vw,36px);box-shadow:var(--shadow-lift);border:1px solid var(--line);position:relative;overflow:hidden}
-.form-card::before{content:"";position:absolute;inset:0 0 auto;height:5px;background:linear-gradient(90deg,var(--red-deep),var(--red-hot))}
-.form-card h2{font:700 clamp(28px,3.4vw,38px)/1.1 var(--head);color:var(--black);letter-spacing:.04em;text-align:center}
-.form-card p{margin:12px auto 18px;text-align:center;font:600 16px/1.5 var(--head);color:#3B3030;max-width:330px}
-.form-card iframe{width:100%;height:496px;border:0;border-radius:4px;display:block}
+.form-card{position:relative;border-radius:var(--r-lg);overflow:hidden;background:#fff;
+  box-shadow:0 2px 6px rgba(70,20,20,.08),0 30px 60px -24px rgba(110,20,20,.45);outline:1px solid rgba(155,45,45,.12)}
+.fc-head{position:relative;padding:26px 26px 54px;text-align:center;color:#fff;
+  background:radial-gradient(120% 140% at 85% -20%,rgba(255,171,0,.28),transparent 55%),radial-gradient(90% 120% at 0% 120%,rgba(0,0,0,.35),transparent 60%),linear-gradient(150deg,#C42424,#8E1818)}
+.fc-head h2{font:700 clamp(26px,3vw,32px)/1.1 var(--head);color:#fff;letter-spacing:.06em}
+.fc-head p{margin:10px auto 0;max-width:320px;font:500 15px/1.5 var(--head);color:rgba(255,255,255,.88)}
+.fc-body{position:relative;margin:-34px 14px 0;background:#fff;border-radius:var(--r-md);box-shadow:0 10px 30px -14px rgba(70,20,20,.35);overflow:hidden}
+.fc-frame{height:400px;overflow:hidden}
+.form-card iframe{width:100%;height:440px;margin-top:-26px;border:0;display:block}
 /* LeadPipeline's embed script hides the iframe until a handshake; keep it visible regardless */
 .form-card iframe{position:static!important;opacity:1!important;visibility:visible!important;pointer-events:auto!important;left:auto!important}
+.fc-foot{display:flex;align-items:center;justify-content:center;gap:8px;padding:14px 16px 18px;font:600 13.5px var(--head);color:var(--crimson)}
+.fc-foot svg{flex:none;width:20px;height:20px;padding:4px;border-radius:50%;background:#FBEDED}
 section[id]{scroll-margin-top:72px}
 
 /* What we teach */
@@ -233,16 +212,10 @@ section[id]{scroll-margin-top:72px}
 .map iframe{width:100%;height:100%;border:0;filter:saturate(.9)}
 
 /* Footer */
-.ftr{background:#0b0b0b;color:#bbb;padding:36px 0 40px;text-align:center;border-top:1px solid rgba(255,255,255,.06)}
-.soc{display:flex;justify-content:center;gap:12px}
-.soc a{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.06);color:#eee;transition:background .2s}
-.soc a:hover{background:var(--red)}
-.fnav{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 28px;margin:24px 0;list-style:none;padding:0}
-.fnav a{color:#eee;text-decoration:none;font:600 15px var(--head)}
-.fnav a:hover{color:#fff;text-decoration:underline;text-underline-offset:4px}
-.copy{font-size:13px;line-height:1.7;color:#aaa}
-.mg{margin-top:16px;font-size:13px;color:#aaa}
-.mg a{color:var(--red-hot);text-decoration:none}
+.ftr{background:#0b0b0b;color:#aaa;padding:30px 0 34px;text-align:center;border-top:1px solid rgba(255,255,255,.06)}
+.copy{font-size:13.5px;line-height:1.7;color:#ccc}
+.disc{max-width:760px;margin:14px auto 0;font-size:11.5px;line-height:1.6;color:#8a8a8a}
+.mbar{display:none}
 
 /* Floating WhatsApp */
 .wa-float{position:fixed;left:20px;bottom:20px;z-index:60;width:58px;height:58px;border-radius:18px;background:#25D366;color:#fff;display:grid;place-items:center;box-shadow:0 12px 28px -8px rgba(37,211,102,.6);transition:transform .2s}
@@ -251,17 +224,12 @@ section[id]{scroll-margin-top:72px}
 /* Modal */
 .modal{position:fixed;inset:0;z-index:90;display:grid;place-items:center;padding:16px;visibility:hidden}
 .modal-bg{position:absolute;inset:0;background:rgba(10,4,4,.6);backdrop-filter:blur(4px);opacity:0;transition:opacity .3s}
-.modal-box{position:relative;width:min(100%,460px);max-height:calc(100dvh - 32px);overflow:auto;transform:translateY(20px) scale(.98);opacity:0;transition:.3s cubic-bezier(.2,.8,.2,1)}
+.modal-box{position:relative;width:min(100%,420px);max-height:calc(100dvh - 32px);overflow:auto;transform:translateY(20px) scale(.98);opacity:0;transition:.3s cubic-bezier(.2,.8,.2,1)}
 .modal.open{visibility:visible}.modal.open .modal-bg{opacity:1}.modal.open .modal-box{transform:none;opacity:1}
-.modal-x{position:absolute;top:14px;right:14px;z-index:2;width:38px;height:38px;border-radius:50%;border:0;background:#F6EEEE;color:var(--crimson);cursor:pointer;display:grid;place-items:center}
-.modal .form-card iframe{height:400px}
+.modal-x{position:absolute;top:12px;right:12px;z-index:2;width:36px;height:36px;border-radius:50%;border:0;background:rgba(255,255,255,.16);color:#fff;cursor:pointer;display:grid;place-items:center}
+.modal-box .form-card{box-shadow:0 30px 80px -20px rgba(0,0,0,.6)}
 
 /* Responsive */
-@media (max-width:1080px){
-  .nav,.phone{display:none}
-  .burger{display:block}
-  .hdr-cta .btn{padding:11px 18px;font-size:14px}
-}
 @media (max-width:900px){
   .fees-grid{grid-template-columns:1fr;max-width:520px;margin:auto}
   .proof{transform:none;max-width:420px;margin:auto}
@@ -274,7 +242,6 @@ section[id]{scroll-margin-top:72px}
   body{font-size:16px}
   .hdr-in{height:64px;gap:12px}
   .logo img{height:32px}
-  .hdr-cta .btn{display:none}
   .why{grid-template-columns:minmax(0,1fr);padding:16px}
   .ticks li{padding:10px 8px}
   .pair{grid-template-columns:1fr;max-width:420px}
@@ -283,7 +250,19 @@ section[id]{scroll-margin-top:72px}
   .ruled{gap:14px}
   .ruled::before,.ruled::after{flex-basis:40px}
   .form-card iframe{height:520px}
-  .wa-float{width:52px;height:52px;left:14px;bottom:14px}
+}
+@media (max-width:900px){
+  .phone{display:none}
+  .mbar{display:flex;gap:10px;position:fixed;left:0;right:0;bottom:0;z-index:70;padding:10px 12px calc(10px + env(safe-area-inset-bottom));
+    background:rgba(255,255,255,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--line);box-shadow:0 -10px 30px -12px rgba(70,20,20,.25)}
+  .mbar .btn{flex:1;font-size:16px;padding:15px 20px}
+  .mbar .call{flex:none;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:#fff;color:var(--red-deep);box-shadow:inset 0 0 0 1.5px var(--red-deep)}
+  body{padding-bottom:calc(76px + env(safe-area-inset-bottom))}
+  .wa-float{left:auto;right:14px;bottom:calc(86px + env(safe-area-inset-bottom));width:54px;height:54px;border-radius:50%}
+}
+@media (max-width:640px){
+  .hdr-cta .btn{padding:10px 16px;font-size:13.5px}
+  .proof{max-height:420px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 </style>
@@ -302,74 +281,13 @@ section[id]{scroll-margin-top:72px}
 
 <header class="hdr" id="top">
   <div class="wrap hdr-in">
-    <a class="logo" href="https://www.choreonconcept.com" aria-label="Choreo N Concept home">
-      <img src="https://www.choreonconcept.com/wp-content/uploads/2021/05/cropped-Choreo-N-Concept-Logo-2.png" alt="Choreo N Concept" width="160" height="40">
-    </a>
-    <nav aria-label="Main">
-      <ul class="nav">
-        <li><a href="https://www.choreonconcept.com/">Home</a></li>
-        <li><a href="https://www.choreonconcept.com/fees-timing/" aria-current="page">Fees &amp; Timing</a></li>
-        <li><a href="https://www.choreonconcept.com/about-us/">About</a></li>
-        <li><button type="button" aria-haspopup="true">Services <svg class="chev"><use href="#i-chev"/></svg></button>
-          <ul class="sub">
-            <li><a href="https://www.choreonconcept.com/wedding-choreography/">Wedding Choreography</a></li>
-            <li><a href="https://www.choreonconcept.com/corporate-choreography/">Corporate Classes</a></li>
-          </ul>
-        </li>
-        <li><button type="button" aria-haspopup="true">Virtual Classes <svg class="chev"><use href="#i-chev"/></svg></button>
-          <ul class="sub">
-            <li><a href="https://www.choreonconcept.com/junior-adults/">Kids Special</a></li>
-            <li><a href="https://www.choreonconcept.com/kids-classes/">Kids Batch</a></li>
-            <li><a href="https://www.choreonconcept.com/pre-teens-online-dance-classes/">Pre Teens</a></li>
-            <li><a href="https://www.choreonconcept.com/dance-workout/">Bollywood Workout</a></li>
-            <li><a href="https://www.choreonconcept.com/bollyhop-choreo/">Bollyhop Choreo</a></li>
-            <li><a href="https://www.choreonconcept.com/semi-classical-dance/">Learn Semi Classical Dance</a></li>
-            <li><a href="https://www.choreonconcept.com/hip-hop-dance-classes/">Hip Hop Classes</a></li>
-            <li><a href="https://www.choreonconcept.com/online-bollywood-dance-classes/">Bollywood Classes</a></li>
-          </ul>
-        </li>
-        <li><a href="https://www.choreonconcept.com/blogs/">Blogs</a></li>
-      </ul>
-    </nav>
+    <span class="logo"><img src="https://www.choreonconcept.com/wp-content/uploads/2021/05/cropped-Choreo-N-Concept-Logo-2.png" alt="Choreo N Concept" width="160" height="40"></span>
     <div class="hdr-cta">
       <a class="phone" href="tel:+919811866443"><svg width="16" height="16"><use href="#i-phone"/></svg>+91 9811866443</a>
       <button class="btn btn-red" type="button" data-book>Book Your Trial</button>
     </div>
-    <button class="burger" type="button" aria-label="Open menu" aria-controls="panel" aria-expanded="false" id="burger">
-      <svg width="26" height="26" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 7h16M4 12h16M4 17h10"/></svg>
-    </button>
   </div>
 </header>
-
-<div class="panel" id="panel" aria-hidden="true">
-  <div class="panel-bg" data-close-panel></div>
-  <div class="panel-box" role="dialog" aria-label="Menu">
-    <div class="panel-top">
-      <img src="https://www.choreonconcept.com/wp-content/uploads/2021/05/cropped-Choreo-N-Concept-Logo-2.png" alt="Choreo N Concept" style="height:32px;width:auto">
-      <button type="button" aria-label="Close menu" data-close-panel>&#x2715;</button>
-    </div>
-    <a href="https://www.choreonconcept.com/">Home</a>
-    <a href="https://www.choreonconcept.com/fees-timing/" aria-current="page">Fees &amp; Timing</a>
-    <a href="https://www.choreonconcept.com/about-us/">About</a>
-    <details><summary>Services <svg class="chev" width="12" height="12"><use href="#i-chev"/></svg></summary>
-      <a href="https://www.choreonconcept.com/wedding-choreography/">Wedding Choreography</a>
-      <a href="https://www.choreonconcept.com/corporate-choreography/">Corporate Classes</a>
-    </details>
-    <details><summary>Virtual Classes <svg class="chev" width="12" height="12"><use href="#i-chev"/></svg></summary>
-      <a href="https://www.choreonconcept.com/junior-adults/">Kids Special</a>
-      <a href="https://www.choreonconcept.com/kids-classes/">Kids Batch</a>
-      <a href="https://www.choreonconcept.com/pre-teens-online-dance-classes/">Pre Teens</a>
-      <a href="https://www.choreonconcept.com/dance-workout/">Bollywood Workout</a>
-      <a href="https://www.choreonconcept.com/bollyhop-choreo/">Bollyhop Choreo</a>
-      <a href="https://www.choreonconcept.com/semi-classical-dance/">Learn Semi Classical Dance</a>
-      <a href="https://www.choreonconcept.com/hip-hop-dance-classes/">Hip Hop Classes</a>
-      <a href="https://www.choreonconcept.com/online-bollywood-dance-classes/">Bollywood Classes</a>
-    </details>
-    <a href="https://www.choreonconcept.com/blogs/">Blogs</a>
-    <a href="tel:+919811866443">+91 9811866443</a>
-    <button class="btn btn-red" type="button" data-book>Book Your Trial</button>
-  </div>
-</div>
 
 <main>
   <!-- Hero -->
@@ -436,19 +354,23 @@ section[id]{scroll-margin-top:72px}
   <section class="sec fees" id="fees">
     <div class="wrap fees-grid">
       <div class="proof">
-        <img src="https://www.choreonconcept.com/wp-content/uploads/2021/06/4.jpg" alt="Google reviews for Choreo N Concept Studio" width="819" height="1024" loading="lazy">
+        <img src="https://www.choreonconcept.com/wp-content/uploads/2021/06/4.jpg" alt="Google reviews for Choreo N Concept Studio" width="819" height="1024" loading="lazy" draggable="false">
       </div>
       <div class="mid">
         <button class="btn btn-red btn-lg" type="button" data-book>Book A Trial</button>
         <span class="arrow" aria-hidden="true"><svg width="28" height="28"><use href="#i-arrow"/></svg></span>
       </div>
       <div class="form-card">
-        <h2>FEES &amp; TIMING</h2>
-        <p>You will receive an email with the class details; Our executive will help with the same.</p>
-        <iframe src="https://link.leadpipelyne.com/widget/form/RWv8n0lPK6qoK3LD5QSK" id="inline-RWv8n0lPK6qoK3LD5QSK"
+        <div class="fc-head">
+          <h2>FEES &amp; TIMING</h2>
+          <p>You will receive an email with the class details; Our executive will help with the same.</p>
+        </div>
+        <div class="fc-body"><div class="fc-frame"><iframe src="https://link.leadpipelyne.com/widget/form/RWv8n0lPK6qoK3LD5QSK" id="inline-RWv8n0lPK6qoK3LD5QSK"
           data-layout="{'id':'INLINE'}" data-trigger-type="alwaysShow" data-trigger-value="" data-activation-type="alwaysActivated"
           data-activation-value="" data-deactivation-type="neverDeactivate" data-deactivation-value="" data-form-name="Fees &amp; Timing"
-          data-height="496" data-layout-iframe-id="inline-RWv8n0lPK6qoK3LD5QSK" data-form-id="RWv8n0lPK6qoK3LD5QSK" title="Fees &amp; Timing form"></iframe>
+          data-height="496" data-layout-iframe-id="inline-RWv8n0lPK6qoK3LD5QSK" data-form-id="RWv8n0lPK6qoK3LD5QSK" title="Fees &amp; Timing form"></iframe></div>
+          <div class="fc-foot"><svg viewBox="0 0 16 16"><use href="#i-check"/></svg>100% Money-Back Guarantee</div>
+        </div>
       </div>
     </div>
   </section>
@@ -555,73 +477,13 @@ section[id]{scroll-margin-top:72px}
     </div>
   </section>
 
-  <!-- Blogs -->
-  <section class="sec" style="padding-top:0">
-    <div class="wrap posts">
-      <article class="post">
-        <a class="thumb noimg" href="https://www.choreonconcept.com/songs-to-dance-to-with-your-brother-or-sister/" tabindex="-1" aria-hidden="true"><img src="https://www.choreonconcept.com/wp-content/uploads/2021/05/cropped-Choreo-N-Concept-Logo-2.png" alt=""></a>
-        <div class="pb">
-          <h3><a href="https://www.choreonconcept.com/songs-to-dance-to-with-your-brother-or-sister/">Top 10 Songs to Dance to with your Brother or Sister</a></h3>
-          <div class="meta">August 13, 2022 /// No Comments</div>
-          <p></p>
-          <a class="more" href="https://www.choreonconcept.com/songs-to-dance-to-with-your-brother-or-sister/">Read More »</a>
-        </div>
-      </article>
-      <article class="post">
-        <a class="thumb" href="https://www.choreonconcept.com/what-is-bollywood-and-bollywood-story/" tabindex="-1" aria-hidden="true"><img src="https://www.choreonconcept.com/wp-content/uploads/2021/12/Bollywood.jpg" alt="" loading="lazy"></a>
-        <div class="pb">
-          <h3><a href="https://www.choreonconcept.com/what-is-bollywood-and-bollywood-story/">All about Bollywood &amp; Bollywood Story</a></h3>
-          <div class="meta">December 29, 2021 /// No Comments</div>
-          <p>This article explains all about Bollywood, How Bollywood was discovered, How it Bollywood became so popular, About Bollywood Superstars, History and Evolution. If you are a Bollywood lover then you should definitely check this full article.</p>
-          <a class="more" href="https://www.choreonconcept.com/what-is-bollywood-and-bollywood-story/">Read More »</a>
-        </div>
-      </article>
-      <article class="post">
-        <a class="thumb" href="https://www.choreonconcept.com/dance-classes-online/" tabindex="-1" aria-hidden="true"><img src="https://www.choreonconcept.com/wp-content/uploads/2021/12/Dance_Classes_Online_for_Kids-1.jpg" alt="" loading="lazy"></a>
-        <div class="pb">
-          <h3><a href="https://www.choreonconcept.com/dance-classes-online/">Dance Classes Online by Choreo N Concept</a></h3>
-          <div class="meta">December 4, 2021 /// No Comments</div>
-          <p>This is an article about dance classes online for kids. It can be intimidating to dance with other kids in person, but the internet makes it easier to dance with people from all over the world. This is a great way to improve your dance skills and make friends. Zoom dance classes online for kids are a fantastic option for those looking for dance lessons that are both affordable and convenient!</p>
-          <a class="more" href="https://www.choreonconcept.com/dance-classes-online/">Read More »</a>
-        </div>
-      </article>
-      <article class="post">
-        <a class="thumb" href="https://www.choreonconcept.com/bollywood-dance/" tabindex="-1" aria-hidden="true"><img src="https://www.choreonconcept.com/wp-content/uploads/2021/11/Bollywood_Dance.jpeg" alt="" loading="lazy"></a>
-        <div class="pb">
-          <h3><a href="https://www.choreonconcept.com/bollywood-dance/">Bollywood Dance: Want to Experience Indian Bollywood Dance Style</a></h3>
-          <div class="meta">November 19, 2021 /// No Comments</div>
-          <p>This is an article about Bollywood dance style. It is the most famous and popular form of Indian classical dance, and it’s been gaining popularity in all over the world as well. Bollywood dancers usually wear heavy jewellery and elaborate outfits to perform routines that involve acrobatics, fast footwork and hand gestures-making them a sight to behold!</p>
-          <a class="more" href="https://www.choreonconcept.com/bollywood-dance/">Read More »</a>
-        </div>
-      </article>
-      <article class="post">
-        <a class="thumb" href="https://www.choreonconcept.com/top-10-songs-to-dance-to-with-your-brother-or-sister/" tabindex="-1" aria-hidden="true"><img src="https://www.choreonconcept.com/wp-content/uploads/2021/08/brother-sister-dance-songs.jpg" alt="" loading="lazy"></a>
-        <div class="pb">
-          <h3><a href="https://www.choreonconcept.com/top-10-songs-to-dance-to-with-your-brother-or-sister/">Top 10 Songs to Dance to with your Brother or Sister</a></h3>
-          <div class="meta">October 9, 2021 /// No Comments</div>
-          <p>How do you know what songs to dance to with your brother or sister? There are so many great options! We put together a list</p>
-          <a class="more" href="https://www.choreonconcept.com/top-10-songs-to-dance-to-with-your-brother-or-sister/">Read More »</a>
-        </div>
-      </article>
-      <article class="post">
-        <a class="thumb" href="https://www.choreonconcept.com/beginners-guide-to-becoming-a-good-dancer/" tabindex="-1" aria-hidden="true"><img src="https://www.choreonconcept.com/wp-content/uploads/2021/08/Beginners-guide-to-becoming-a-good-dancer.jpg" alt="" loading="lazy"></a>
-        <div class="pb">
-          <h3><a href="https://www.choreonconcept.com/beginners-guide-to-becoming-a-good-dancer/">The Beginner’s Guide to Becoming a Good Dancer</a></h3>
-          <div class="meta">October 9, 2021 /// No Comments</div>
-          <p>Want to know the secret to becoming a good dancer? In this blog, I’m going to give you a few tips. We have added these</p>
-          <a class="more" href="https://www.choreonconcept.com/beginners-guide-to-becoming-a-good-dancer/">Read More »</a>
-        </div>
-      </article>
-    </div>
-  </section>
-
   <!-- Contact -->
   <section class="contact">
     <div class="wrap c-grid">
       <div>
-        <button class="btn btn-red" type="button" data-book>Downlod the fees &amp; timing</button>
+        <button class="btn btn-red" type="button" data-book>Book Your Trial</button>
         <div class="c-list">
-          <a class="c-item" href="mailto:info@choreonconcept.com"><svg width="20" height="20"><use href="#i-mail"/></svg>info@choreonconcept.com</a>
+          <a class="c-item" href="mailto:choreonconcept@gmail.com"><svg width="20" height="20"><use href="#i-mail"/></svg>choreonconcept@gmail.com</a>
           <a class="c-item" href="tel:+919811866443"><svg width="20" height="20"><use href="#i-phone"/></svg>+91 9811866443 / 45</a>
         </div>
         <a class="c-wa" href="https://wa.me/919811866443" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><svg width="28" height="28"><use href="#i-wa"/></svg></a>
@@ -635,24 +497,15 @@ section[id]{scroll-margin-top:72px}
 
 <footer class="ftr">
   <div class="wrap">
-    <div class="soc">
-      <a href="https://www.instagram.com/choreonconcept/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="17" height="17" viewBox="0 0 24 24"><path fill="currentColor" d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4zM17.2 5.6a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4zM21.9 7c-.1-1.6-.4-3-1.6-4.2S17.6 1.2 16 1.1C14.4 1 9.6 1 8 1.1 6.4 1.2 5 1.5 3.8 2.7S2.2 5.4 2.1 7C2 8.6 2 13.4 2.1 15c.1 1.6.4 3 1.6 4.2s2.6 1.5 4.2 1.6c1.6.1 6.4.1 8 0 1.6-.1 3-.4 4.2-1.6s1.5-2.6 1.6-4.2c.1-1.6.1-6.4.2-8zM19.8 18.6a3.3 3.3 0 0 1-1.9 1.9c-1.3.5-4.4.4-5.9.4s-4.6.1-5.9-.4a3.3 3.3 0 0 1-1.9-1.9C3.7 17.3 3.8 14.2 3.8 12.7s-.1-4.6.4-5.9a3.3 3.3 0 0 1 1.9-1.9C7.4 4.4 10.5 4.5 12 4.5s4.6-.1 5.9.4a3.3 3.3 0 0 1 1.9 1.9c.5 1.3.4 4.4.4 5.9s.1 4.6-.4 5.9z"/></svg></a>
-      <a href="https://www.twitter.com/choreonconcept/" target="_blank" rel="noopener" aria-label="Twitter"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M23 5.1a9 9 0 0 1-2.6.7A4.5 4.5 0 0 0 22.4 3a9 9 0 0 1-2.9 1.1A4.5 4.5 0 0 0 11.8 8 12.8 12.8 0 0 1 2.5 3.3a4.5 4.5 0 0 0 1.4 6 4.5 4.5 0 0 1-2-.6v.1a4.5 4.5 0 0 0 3.6 4.4 4.5 4.5 0 0 1-2 .1 4.5 4.5 0 0 0 4.2 3.1A9 9 0 0 1 1 18.3 12.7 12.7 0 0 0 7.9 20.3c8.3 0 12.8-6.9 12.8-12.8v-.6A9 9 0 0 0 23 5.1z"/></svg></a>
-      <a href="https://www.facebook.com/choreonconcept/" target="_blank" rel="noopener" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M14 8V6c0-.9.6-1.1 1-1.1h2.6V1H14c-4 0-4.9 3-4.9 4.9V8H6.8v4h2.3v11H14V12h3.3l.4-4z"/></svg></a>
-      <a href="https://www.youtube.com/choreonconcept/" target="_blank" rel="noopener" aria-label="YouTube"><svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.2 3.6z"/></svg></a>
-      <a href="https://www.linkedin.com/company/choreonconcept" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M5.4 7.7H1V23h4.4zM3.2 1a2.6 2.6 0 1 0 0 5.1 2.6 2.6 0 0 0 0-5.1zM23 14.6c0-4.1-.9-7.2-5.7-7.2a5 5 0 0 0-4.5 2.5V7.7H8.6V23h4.4v-7.6c0-2 .4-3.9 2.9-3.9s2.5 2.3 2.5 4V23H23z"/></svg></a>
-    </div>
-    <ul class="fnav">
-      <li><a href="https://www.choreonconcept.com/about-us/">About</a></li>
-      <li><a href="https://www.choreonconcept.com/faq/">FAQ</a></li>
-      <li><a href="https://www.choreonconcept.com/privacy-policy/">Privacy Policy</a></li>
-      <li><a href="https://www.choreonconcept.com/terms-conditions/">Terms &amp; Conditions</a></li>
-      <li><a href="https://www.choreonconcept.com/sitemap/">Sitemap</a></li>
-    </ul>
-    <p class="copy">©2020 Copyrights | All rights reserved<br>INChoreo N Concept LLP</p>
-    <p class="mg">Managed by <a href="https://mangoeyesagency.com/?utm_source=cnc&amp;utm_medium=footer&amp;utm_campaign=personal" target="_blank" rel="noopener">Mangoeyes Agency</a></p>
+    <p class="copy">©2026 Copyrights | All rights reserved | Choreo N Concept LLP</p>
+    <p class="disc">This site is not a part of the Facebook website or Meta Platforms, Inc. Additionally, this site is NOT endorsed by Facebook in any way. FACEBOOK is a trademark of Meta Platforms, Inc.</p>
   </div>
 </footer>
+
+<div class="mbar" role="region" aria-label="Quick actions">
+  <button class="btn btn-red" type="button" data-book>Book Your Trial</button>
+  <a class="call" href="tel:+919811866443" aria-label="Call +91 9811866443"><svg width="22" height="22"><use href="#i-phone"/></svg></a>
+</div>
 
 <a class="wa-float" href="https://wa.me/919811866443" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><svg width="30" height="30"><use href="#i-wa"/></svg></a>
 
@@ -662,9 +515,14 @@ section[id]{scroll-margin-top:72px}
   <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <button class="modal-x" type="button" aria-label="Close" data-close-modal>&#x2715;</button>
     <div class="form-card">
-      <h2 id="modalTitle">FEES &amp; TIMING</h2>
-      <p>You will receive an email with the class details; Our executive will help with the same.</p>
-      <div id="modalForm"></div>
+      <div class="fc-head">
+        <h2 id="modalTitle">FEES &amp; TIMING</h2>
+        <p>You will receive an email with the class details; Our executive will help with the same.</p>
+      </div>
+      <div class="fc-body">
+        <div class="fc-frame" id="modalForm"></div>
+        <div class="fc-foot"><svg viewBox="0 0 16 16"><use href="#i-check"/></svg>100% Money-Back Guarantee</div>
+      </div>
     </div>
   </div>
 </div>
@@ -677,16 +535,9 @@ section[id]{scroll-margin-top:72px}
   var onScroll=function(){hdr.classList.toggle('scrolled',window.scrollY>10)};
   onScroll();window.addEventListener('scroll',onScroll,{passive:true});
 
-  // Mobile panel
-  var panel=document.getElementById('panel'),burger=document.getElementById('burger');
-  function setPanel(o){panel.classList.toggle('open',o);panel.setAttribute('aria-hidden',!o);burger.setAttribute('aria-expanded',o);document.body.style.overflow=o?'hidden':''}
-  burger.addEventListener('click',function(){setPanel(true)});
-  panel.querySelectorAll('[data-close-panel]').forEach(function(b){b.addEventListener('click',function(){setPanel(false)})});
-
   // Booking modal, form iframe created on first open
   var modal=document.getElementById('modal'),slot=document.getElementById('modalForm'),lastFocus;
   function openModal(){
-    setPanel(false);
     if(!slot.firstChild){
       var f=document.createElement('iframe');
       f.src='https://link.leadpipelyne.com/widget/form/RWv8n0lPK6qoK3LD5QSK';
@@ -700,7 +551,7 @@ section[id]{scroll-margin-top:72px}
   function closeModal(){modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.style.overflow='';if(lastFocus)lastFocus.focus()}
   document.querySelectorAll('[data-book]').forEach(function(b){b.addEventListener('click',openModal)});
   modal.querySelectorAll('[data-close-modal]').forEach(function(b){b.addEventListener('click',closeModal)});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeModal();setPanel(false)}});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal()});
 
   // Reviews carousel
   var track=document.getElementById('tTrack'),slides=track.children,dots=document.getElementById('tDots'),idx=0,timer;
