@@ -463,7 +463,7 @@ section[id]{scroll-margin-top:72px}
           <p class="err" role="alert"></p>
           <button class="btn btn-red send" type="submit"><span>Send Me Details</span></button>
         </form>
-        <div class="done" hidden tabindex="-1"><span class="done-ic"><svg viewBox="0 0 16 16"><use href="#i-check"/></svg></span><b>Thank you!</b><p>We have your details. A team member will reach out to you shortly.</p></div>
+        <div class="done" hidden tabindex="-1"><span class="done-ic"><svg viewBox="0 0 16 16"><use href="#i-check"/></svg></span><b>Thank you!</b><p>One of our team members will get in touch with you for the details.</p></div>
           <div class="fc-foot"><svg viewBox="0 0 16 16"><use href="#i-check"/></svg>100% Money-Back Guarantee</div>
         </div>
       </div>
@@ -652,9 +652,9 @@ section[id]{scroll-margin-top:72px}
             <div class="ph"><select name="cc" aria-label="Country code"><option value="+91" selected>🇮🇳 +91</option><option value="+1">🇺🇸 +1</option><option value="+44">🇬🇧 +44</option><option value="+971">🇦🇪 +971</option><option value="+61">🇦🇺 +61</option><option value="+65">🇸🇬 +65</option></select>
             <input id="ph-modal" name="phone" type="tel" inputmode="tel" autocomplete="tel-national" required maxlength="16" placeholder="98765 43210"></div></div>
           <p class="err" role="alert"></p>
-          <button class="btn btn-red send" type="submit"><span>Send Me Details</span></button>
+          <button class="btn btn-red send" type="submit"><span>Submit</span></button>
         </form>
-        <div class="done" hidden tabindex="-1"><span class="done-ic"><svg viewBox="0 0 16 16"><use href="#i-check"/></svg></span><b>Thank you!</b><p>We have your details. A team member will reach out to you shortly.</p></div>
+        <div class="done" hidden tabindex="-1"><span class="done-ic"><svg viewBox="0 0 16 16"><use href="#i-check"/></svg></span><b>Thank you!</b><p>One of our team members will get in touch with you for the details.</p></div>
         <div class="fc-foot"><svg viewBox="0 0 16 16"><use href="#i-check"/></svg>100% Money-Back Guarantee</div>
       </div>
     </div>
@@ -671,14 +671,14 @@ section[id]{scroll-margin-top:72px}
   // Form popup, iframe created on first open. Same form, header set by the button that opened it
   var modal=document.getElementById('modal'),mForm=modal.querySelector('.lead-form'),lastFocus;
   var MODES={
-    callback:{t:'Request a Callback',p:'Share your details and a team member will call you back to help you pick the right class.'},
-    trial:{t:'Book a Trial',p:'A team member will reach out to you to book your trial session.'}
+    callback:{t:'Request a Callback',b:'Submit',p:'Share your details and a team member will call you back to help you pick the right class.'},
+    trial:{t:'Book a Trial',b:'Send Me Details',p:'A team member will reach out to you to book your trial session.'}
   };
   function openModal(mode){
     var m=MODES[mode]||MODES.callback;
     document.getElementById('modalTitle').textContent=m.t;
     document.getElementById('modalSub').textContent=m.p;
-    mForm.setAttribute('data-type',m.t);mForm.setAttribute('aria-label',m.t+' form');mForm.elements.form_type.value=m.t;
+    mForm.setAttribute('data-type',m.t);mForm.setAttribute('aria-label',m.t+' form');mForm.elements.form_type.value=m.t;mForm.querySelector('.send span').textContent=m.b;
     lastFocus=document.activeElement;
     modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';
     var first=mForm.hidden?modal.querySelector('.modal-x'):mForm.elements.name;
