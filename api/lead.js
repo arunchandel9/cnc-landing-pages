@@ -56,14 +56,23 @@ module.exports = async (req, res) => {
   }
 
   const tracking = Object.entries(lead.tracking).slice(0, 10).map(([k, v]) => [clean(k, 40), clean(v, 200)]);
+
+  // Every lead through this endpoint comes from an ad landing page (the main website has its own forms).
+  // Name the ad platform when the click IDs or UTM source show it.
+  const t = Object.fromEntries(tracking);
+  const src = (t.utm_source || '').toLowerCase();
+  let source = 'Ad Landing Page';
+  if (t.fbclid || /facebook|instagram|meta|fb|ig/.test(src)) source = 'Meta Ad';
+  else if (t.gclid || /google|youtube|adwords/.test(src)) source = 'Google Ad';
+  const pageName = /wedding/i.test(lead.page) ? 'Wedding Choreography' : /fees-timing/i.test(lead.page) ? 'Fees & Timing' : (lead.title || 'Landing page');
   const rows = [
-    ['Form', lead.form], ['Name', lead.name], ['Email', lead.email], ['Phone', lead.phone],
+    ['Source', `${source} (${pageName} page)`], ['Form', lead.form], ['Name', lead.name], ['Email', lead.email], ['Phone', lead.phone],
     ['Page', lead.page], ['Referrer', lead.referrer || 'Direct'], ['Received', lead.at + ' IST'],
     ...tracking,
   ];
 
   const html = `<div style="font-family:Arial,sans-serif;max-width:560px">
-  <h2 style="margin:0 0 4px;color:#9B2D2D">New lead: ${esc(lead.form)}</h2>
+  <h2 style="margin:0 0 4px;color:#9B2D2D">${esc(source)}: New lead, ${esc(lead.form)}</h2>
   <p style="margin:0 0 16px;color:#555">From the ${esc(lead.title || 'landing page')}</p>
   <table cellpadding="8" style="border-collapse:collapse;width:100%;font-size:14px">
     ${rows.map(([k, v]) => `<tr><td style="border-bottom:1px solid #eee;color:#777;width:120px">${esc(k)}</td><td style="border-bottom:1px solid #eee;color:#111"><b>${esc(v)}</b></td></tr>`).join('')}
@@ -86,7 +95,7 @@ module.exports = async (req, res) => {
       from: `"CNC Website Leads" <${user || LEAD_TO}>`,
       to: LEAD_TO,
       replyTo: `"${lead.name.replace(/"/g, '')}" <${lead.email}>`,
-      subject: `New lead: ${lead.form} - ${lead.name} (${lead.phone})`,
+      subject: `[${source}] New lead: ${lead.form} - ${lead.name} (${lead.phone})`,
       text,
       html,
     });
