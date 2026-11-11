@@ -1,6 +1,9 @@
 {
   "cleanUrls": true,
   "trailingSlash": true,
+  "redirects": [
+    { "source": "/", "destination": "/fees-timing/", "permanent": false }
+  ],
   "headers": [
     {
       "source": "/api/(.*)",
