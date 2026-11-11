@@ -133,10 +133,29 @@ p{margin:0}
 .fc-head p{margin:10px auto 0;max-width:320px;font:500 15px/1.5 var(--head);color:rgba(255,255,255,.88)}
 #fees-form{scroll-margin-top:84px}
 .fc-body{position:relative;margin:-34px 14px 0;background:#fff;border-radius:var(--r-md);box-shadow:0 10px 30px -14px rgba(70,20,20,.35);overflow:hidden}
-.fc-frame{height:372px;overflow:hidden}
-.form-card iframe{width:100%;height:440px;margin-top:-26px;border:0;display:block}
-/* LeadPipeline's embed script hides the iframe until a handshake; keep it visible regardless */
-.form-card iframe{position:static!important;opacity:1!important;visibility:visible!important;pointer-events:auto!important;left:auto!important}
+.lead-form{display:grid;gap:12px;padding:20px 18px 6px}
+.lead-form[hidden]{display:none}
+.fld{display:grid;gap:6px}
+.fld span{font:700 12.5px var(--head);color:#4a3a3a;letter-spacing:.02em}
+.fld input,.fld select{width:100%;height:48px;padding:0 14px;border:1.5px solid #EADCDC;border-radius:12px;background:#FCF9F8;font:500 16px var(--body);color:#1d1515;transition:border-color .2s,box-shadow .2s,background .2s}
+.fld input::placeholder{color:#b3a5a5}
+.fld input:focus,.fld select:focus{outline:none;border-color:var(--red-deep);background:#fff;box-shadow:0 0 0 4px rgba(174,23,23,.12)}
+.fld input[aria-invalid="true"]{border-color:var(--red-hot);background:#FFF6F6}
+.ph{display:flex;gap:8px}
+.ph select{flex:0 0 104px;padding:0 8px;cursor:pointer}
+.err{min-height:0;margin:0;font:600 13.5px/1.4 var(--head);color:var(--red-hot)}
+.err:empty{display:none}
+.send{width:100%;height:52px;margin-top:4px;font-size:16px}
+.send[disabled]{opacity:.7;cursor:progress;transform:none}
+.send.loading span::after{content:"";display:inline-block;width:14px;height:14px;margin-left:10px;vertical-align:-2px;border:2px solid rgba(255,255,255,.5);border-top-color:#fff;border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.done{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;padding:34px 22px 18px}
+.done[hidden]{display:none}
+.done-ic{display:grid;place-items:center;width:56px;height:56px;border-radius:50%;background:#EAF7EE;color:#1E8E4A}
+.done-ic svg{width:26px;height:26px}
+.done b{font:700 20px var(--head);color:#1d1515}
+.done p{font-size:15px;color:var(--muted);max-width:300px}
 .fc-foot{display:flex;align-items:center;justify-content:center;gap:8px;padding:14px 16px 18px;font:600 13.5px var(--head);color:var(--crimson)}
 .fc-foot svg{flex:none;width:20px;height:20px;padding:4px;border-radius:50%;background:#FBEDED}
 section[id]{scroll-margin-top:72px}
@@ -317,7 +336,6 @@ section[id]{scroll-margin-top:72px}
   .card{padding:30px 22px 26px}
   .ruled{gap:14px}
   .ruled::before,.ruled::after{flex-basis:40px}
-  .form-card iframe{height:520px}
 }
 @media (max-width:900px){
   .phone{display:none}
@@ -433,10 +451,19 @@ section[id]{scroll-margin-top:72px}
           <h2>Book a Trial</h2>
           <p>A team member will reach out to you to book your trial session.</p>
         </div>
-        <div class="fc-body"><div class="fc-frame"><iframe src="https://link.leadpipelyne.com/widget/form/RWv8n0lPK6qoK3LD5QSK" id="inline-RWv8n0lPK6qoK3LD5QSK"
-          data-layout="{'id':'INLINE'}" data-trigger-type="alwaysShow" data-trigger-value="" data-activation-type="alwaysActivated"
-          data-activation-value="" data-deactivation-type="neverDeactivate" data-deactivation-value="" data-form-name="Book a Trial"
-          data-height="496" data-layout-iframe-id="inline-RWv8n0lPK6qoK3LD5QSK" data-form-id="RWv8n0lPK6qoK3LD5QSK" title="Book a trial form"></iframe></div>
+        <div class="fc-body">
+        <form class="lead-form" novalidate data-type="Book a Trial" aria-label="Book a Trial form">
+          <input type="hidden" name="form_type" value="Book a Trial">
+          <div class="hp" aria-hidden="true"><label>Company<input name="company" tabindex="-1" autocomplete="off"></label></div>
+          <label class="fld"><span>Full Name*</span><input name="name" autocomplete="name" required maxlength="80" placeholder="Your full name"></label>
+          <label class="fld"><span>Email*</span><input name="email" type="email" autocomplete="email" required maxlength="120" placeholder="you@example.com"></label>
+          <div class="fld"><label for="ph-inline"><span>Phone*</span></label>
+            <div class="ph"><select name="cc" aria-label="Country code"><option value="+91" selected>🇮🇳 +91</option><option value="+1">🇺🇸 +1</option><option value="+44">🇬🇧 +44</option><option value="+971">🇦🇪 +971</option><option value="+61">🇦🇺 +61</option><option value="+65">🇸🇬 +65</option></select>
+            <input id="ph-inline" name="phone" type="tel" inputmode="tel" autocomplete="tel-national" required maxlength="16" placeholder="98765 43210"></div></div>
+          <p class="err" role="alert"></p>
+          <button class="btn btn-red send" type="submit"><span>Send Me Details</span></button>
+        </form>
+        <div class="done" hidden tabindex="-1"><span class="done-ic"><svg viewBox="0 0 16 16"><use href="#i-check"/></svg></span><b>Thank you!</b><p>We have your details. A team member will reach out to you shortly.</p></div>
           <div class="fc-foot"><svg viewBox="0 0 16 16"><use href="#i-check"/></svg>100% Money-Back Guarantee</div>
         </div>
       </div>
@@ -616,14 +643,24 @@ section[id]{scroll-margin-top:72px}
         <p id="modalSub">Share your details and a team member will call you back to help you pick the right class.</p>
       </div>
       <div class="fc-body">
-        <div class="fc-frame" id="modalForm"></div>
+        <form class="lead-form" novalidate data-type="Request a Callback" aria-label="Request a Callback form">
+          <input type="hidden" name="form_type" value="Request a Callback">
+          <div class="hp" aria-hidden="true"><label>Company<input name="company" tabindex="-1" autocomplete="off"></label></div>
+          <label class="fld"><span>Full Name*</span><input name="name" autocomplete="name" required maxlength="80" placeholder="Your full name"></label>
+          <label class="fld"><span>Email*</span><input name="email" type="email" autocomplete="email" required maxlength="120" placeholder="you@example.com"></label>
+          <div class="fld"><label for="ph-modal"><span>Phone*</span></label>
+            <div class="ph"><select name="cc" aria-label="Country code"><option value="+91" selected>🇮🇳 +91</option><option value="+1">🇺🇸 +1</option><option value="+44">🇬🇧 +44</option><option value="+971">🇦🇪 +971</option><option value="+61">🇦🇺 +61</option><option value="+65">🇸🇬 +65</option></select>
+            <input id="ph-modal" name="phone" type="tel" inputmode="tel" autocomplete="tel-national" required maxlength="16" placeholder="98765 43210"></div></div>
+          <p class="err" role="alert"></p>
+          <button class="btn btn-red send" type="submit"><span>Send Me Details</span></button>
+        </form>
+        <div class="done" hidden tabindex="-1"><span class="done-ic"><svg viewBox="0 0 16 16"><use href="#i-check"/></svg></span><b>Thank you!</b><p>We have your details. A team member will reach out to you shortly.</p></div>
         <div class="fc-foot"><svg viewBox="0 0 16 16"><use href="#i-check"/></svg>100% Money-Back Guarantee</div>
       </div>
     </div>
   </div>
 </div>
 
-<script src="https://link.leadpipelyne.com/js/form_embed.js"></script>
 <script>
 (function(){
   // Sticky header shadow
@@ -632,7 +669,7 @@ section[id]{scroll-margin-top:72px}
   onScroll();window.addEventListener('scroll',onScroll,{passive:true});
 
   // Form popup, iframe created on first open. Same form, header set by the button that opened it
-  var modal=document.getElementById('modal'),slot=document.getElementById('modalForm'),lastFocus;
+  var modal=document.getElementById('modal'),mForm=modal.querySelector('.lead-form'),lastFocus;
   var MODES={
     callback:{t:'Request a Callback',p:'Share your details and a team member will call you back to help you pick the right class.'},
     trial:{t:'Book a Trial',p:'A team member will reach out to you to book your trial session.'}
@@ -641,16 +678,11 @@ section[id]{scroll-margin-top:72px}
     var m=MODES[mode]||MODES.callback;
     document.getElementById('modalTitle').textContent=m.t;
     document.getElementById('modalSub').textContent=m.p;
-    if(!slot.firstChild){
-      var f=document.createElement('iframe');
-      f.src='https://link.leadpipelyne.com/widget/form/RWv8n0lPK6qoK3LD5QSK';
-      f.id='popup-RWv8n0lPK6qoK3LD5QSK';
-      slot.appendChild(f);
-    }
-    slot.firstChild.title=m.t+' form';
+    mForm.setAttribute('data-type',m.t);mForm.setAttribute('aria-label',m.t+' form');mForm.elements.form_type.value=m.t;
     lastFocus=document.activeElement;
     modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';
-    modal.querySelector('.modal-x').focus();
+    var first=mForm.hidden?modal.querySelector('.modal-x'):mForm.elements.name;
+    setTimeout(function(){first.focus()},60);
   }
   function closeModal(){if(!modal.classList.contains('open'))return;modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.style.overflow='';if(lastFocus&&lastFocus.focus)lastFocus.focus()}
   window.cncModalOpen=function(){return modal.classList.contains('open')};
@@ -780,6 +812,41 @@ section[id]{scroll-margin-top:72px}
   if(window.visualViewport) visualViewport.addEventListener('resize',layout);
   ensureSrc();
   layout(); render(); onScroll();
+})();
+
+/* Lead forms: posted to the Vercel function at /api/lead, which emails the lead to the studio.
+   Set window.CNC_LEAD_ENDPOINT before this script if the page is hosted somewhere other than the Vercel project. */
+(function(){
+  var ENDPOINT=window.CNC_LEAD_ENDPOINT||'/api/lead';
+  var qs=new URLSearchParams(location.search);
+  var track={};['utm_source','utm_medium','utm_campaign','utm_content','utm_term','fbclid','gclid'].forEach(function(k){if(qs.get(k))track[k]=qs.get(k)});
+  var EMAIL=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  [].forEach.call(document.querySelectorAll('.lead-form'),function(f){
+    var err=f.querySelector('.err'),btn=f.querySelector('.send'),done=f.parentNode.querySelector('.done');
+    function bad(el,msg){el.setAttribute('aria-invalid','true');err.textContent=msg;el.focus();return false}
+    [].forEach.call(f.querySelectorAll('input'),function(el){el.addEventListener('input',function(){el.removeAttribute('aria-invalid');err.textContent=''})});
+    f.addEventListener('submit',function(e){
+      e.preventDefault();
+      var n=f.elements.name,m=f.elements.email,p=f.elements.phone;
+      var name=n.value.trim(),email=m.value.trim(),digits=p.value.replace(/\D/g,'');
+      if(name.length<2) return bad(n,'Please enter your full name.');
+      if(!EMAIL.test(email)) return bad(m,'Please enter a valid email address.');
+      if(digits.length<7||digits.length>15) return bad(p,'Please enter a valid phone number.');
+      var data={form_type:f.elements.form_type.value,name:name,email:email,phone:f.elements.cc.value+' '+digits,
+        company:f.elements.company.value,page:location.href.split('#')[0],page_title:document.title,referrer:document.referrer,tracking:track};
+      btn.disabled=true;btn.classList.add('loading');err.textContent='';
+      fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
+        .then(function(r){return r.json().catch(function(){return {}}).then(function(j){if(!r.ok||!j.ok)throw new Error(j.error||'Request failed');})})
+        .then(function(){
+          f.hidden=true;done.hidden=false;done.focus();
+          if(window.fbq)fbq('track','Lead',{content_name:data.form_type});
+          if(window.gtag)gtag('event','generate_lead',{form_type:data.form_type});
+          if(window.dataLayer)dataLayer.push({event:'lead_submit',form_type:data.form_type});
+        })
+        .catch(function(){err.textContent='We could not send your details. Please try again or call +91 9811866443.'})
+        .then(function(){btn.disabled=false;btn.classList.remove('loading')});
+    });
+  });
 })();
 </script>
 </body>

@@ -1,0 +1,9 @@
+{
+  "name": "cnc-landing-pages",
+  "private": true,
+  "description": "Choreo N Concept ad landing pages with a lead form endpoint",
+  "engines": { "node": ">=18" },
+  "dependencies": {
+    "nodemailer": "^6.9.16"
+  }
+}
