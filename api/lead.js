@@ -1,8 +1,10 @@
 // Vercel serverless function: receives the landing page forms and emails each lead to the studio.
 //
 // Environment variables (Vercel > Project > Settings > Environment Variables):
-//   GMAIL_USER          Gmail address that sends the email, e.g. cncstudio45@gmail.com
-//   GMAIL_APP_PASSWORD  16-character Google App Password for that account (not the normal password)
+//   SMTP_USER           Mailbox that sends the email (Zoho, Gmail or any provider), e.g. leads@choreonconcept.com
+//   SMTP_PASS           App-specific password for that mailbox (not the normal login password)
+//   SMTP_HOST           Optional. Defaults to smtp.zoho.in (Zoho India). Use smtp.zoho.com, smtp.zoho.eu or smtp.gmail.com as needed
+//   SMTP_PORT           Optional. Defaults to 465 (SSL)
 //   LEAD_TO             Where leads go. Defaults to cncstudio45@gmail.com
 //   ALLOWED_ORIGINS     Optional. Comma-separated origins allowed to post from other domains
 
@@ -72,12 +74,16 @@ module.exports = async (req, res) => {
 
   try {
     const dry = process.env.LEAD_DRY_RUN === '1'; // local testing only: builds the email without sending it
-    if (!dry && (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD)) throw new Error('Email is not configured');
+    const user = process.env.SMTP_USER || process.env.GMAIL_USER;
+    const pass = process.env.SMTP_PASS || process.env.GMAIL_APP_PASSWORD;
+    const host = process.env.SMTP_HOST || (process.env.GMAIL_USER && !process.env.SMTP_USER ? 'smtp.gmail.com' : 'smtp.zoho.in');
+    const port = Number(process.env.SMTP_PORT || 465);
+    if (!dry && (!user || !pass)) throw new Error('Email is not configured');
     const transport = dry
       ? nodemailer.createTransport({ jsonTransport: true })
-      : nodemailer.createTransport({ service: 'gmail', auth: { user: process.env.GMAIL_USER, pass: process.env.GMAIL_APP_PASSWORD } });
+      : nodemailer.createTransport({ host, port, secure: port === 465, auth: { user, pass } });
     const info = await transport.sendMail({
-      from: `"CNC Website Leads" <${process.env.GMAIL_USER || LEAD_TO}>`,
+      from: `"CNC Website Leads" <${user || LEAD_TO}>`,
       to: LEAD_TO,
       replyTo: `"${lead.name.replace(/"/g, '')}" <${lead.email}>`,
       subject: `New lead: ${lead.form} - ${lead.name} (${lead.phone})`,
