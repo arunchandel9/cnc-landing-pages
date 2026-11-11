@@ -4,7 +4,6 @@
 //   GMAIL_USER          Gmail address that sends the email, e.g. cncstudio45@gmail.com
 //   GMAIL_APP_PASSWORD  16-character Google App Password for that account (not the normal password)
 //   LEAD_TO             Where leads go. Defaults to cncstudio45@gmail.com
-//   LEAD_WEBHOOK_URL    Optional. Also POSTs each lead as JSON here (e.g. a LeadPipeline inbound webhook)
 //   ALLOWED_ORIGINS     Optional. Comma-separated origins allowed to post from other domains
 
 const nodemailer = require('nodemailer');
@@ -89,19 +88,6 @@ module.exports = async (req, res) => {
   } catch (e) {
     console.error('Lead email failed', e && e.message);
     return res.status(500).json({ ok: false, error: 'Could not send right now' });
-  }
-
-  // Optional copy to a CRM webhook; a failure here never loses the lead, the email has already gone
-  if (process.env.LEAD_WEBHOOK_URL) {
-    try {
-      await fetch(process.env.LEAD_WEBHOOK_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...lead, phone_digits: digits, ...Object.fromEntries(tracking) }),
-      });
-    } catch (e) {
-      console.error('Lead webhook failed', e && e.message);
-    }
   }
 
   return res.status(200).json({ ok: true });
