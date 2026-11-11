@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Fees &amp; Timing - Online Dance Classes | Choreo N Concept | Dance Classes Online For Kids and Adults</title>
 <meta name="description" content="Checkout Fees and timing details of Choreo N Concept Online Dance Classes in gurgaon.">
-<link rel="icon" href="https://www.choreonconcept.com/wp-content/uploads/2021/05/cropped-Choreo-N-Concept-Logo-2.png">
+<link rel="icon" href="assets/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
@@ -119,10 +119,8 @@ p{margin:0}
 /* Fees & Timing */
 .fees{padding-top:0}
 .fees-grid{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:clamp(24px,4vw,48px);align-items:center}
-.proof{position:relative;max-height:560px;overflow:hidden;background:linear-gradient(160deg,var(--red-hot),var(--red-deep));padding:12px;border-radius:var(--r-lg);box-shadow:var(--shadow-lift);transform:rotate(-1.5deg);transition:transform .4s}
-.proof:hover{transform:rotate(0)}
-.proof img{border-radius:var(--r-md);width:100%;pointer-events:none;user-select:none;-webkit-user-drag:none;-webkit-touch-callout:none}
-.proof::after{content:"";position:absolute;left:12px;right:12px;bottom:12px;height:90px;border-radius:0 0 var(--r-md) var(--r-md);background:linear-gradient(transparent,#fff)}
+.proof{max-width:440px;margin:auto}
+.proof img{width:100%;height:auto;border-radius:var(--r-md);box-shadow:var(--shadow-lift);pointer-events:none;user-select:none;-webkit-user-drag:none;-webkit-touch-callout:none}
 .mid{display:flex;flex-direction:column;align-items:center;gap:22px}
 .arrow{display:grid;place-items:center;width:64px;height:64px;border-radius:50%;border:2px solid var(--crimson);color:var(--crimson)}
 @media (prefers-reduced-motion:no-preference){.arrow{animation:pulse 2.4s ease-in-out infinite}}
@@ -131,8 +129,9 @@ p{margin:0}
   box-shadow:0 2px 6px rgba(70,20,20,.08),0 30px 60px -24px rgba(110,20,20,.45);outline:1px solid rgba(155,45,45,.12)}
 .fc-head{position:relative;padding:26px 26px 54px;text-align:center;color:#fff;
   background:radial-gradient(120% 140% at 85% -20%,rgba(255,171,0,.28),transparent 55%),radial-gradient(90% 120% at 0% 120%,rgba(0,0,0,.35),transparent 60%),linear-gradient(150deg,#C42424,#8E1818)}
-.fc-head h2{font:700 clamp(26px,3vw,32px)/1.1 var(--head);color:#fff;letter-spacing:.06em}
+.fc-head h2{font:700 clamp(26px,3vw,32px)/1.15 var(--head);color:#fff;letter-spacing:.01em;padding:0 24px}
 .fc-head p{margin:10px auto 0;max-width:320px;font:500 15px/1.5 var(--head);color:rgba(255,255,255,.88)}
+#fees-form{scroll-margin-top:84px}
 .fc-body{position:relative;margin:-34px 14px 0;background:#fff;border-radius:var(--r-md);box-shadow:0 10px 30px -14px rgba(70,20,20,.35);overflow:hidden}
 .fc-frame{height:372px;overflow:hidden}
 .form-card iframe{width:100%;height:440px;margin-top:-26px;border:0;display:block}
@@ -143,7 +142,7 @@ p{margin:0}
 section[id]{scroll-margin-top:72px}
 
 /* What we teach */
-.teach{position:relative;background:var(--charcoal) url("https://www.choreonconcept.com/wp-content/uploads/2020/11/lee-miller-47629-unsplash.jpg") center/cover;isolation:isolate}
+.teach{position:relative;background:var(--charcoal) url("assets/teach-bg.jpg") center/cover;isolation:isolate}
 .teach::before{content:"";position:absolute;inset:0;background:var(--charcoal);opacity:.96;z-index:-1}
 .teach h2{color:#fff;font-family:var(--body);font-weight:700;font-size:clamp(30px,4vw,48px);text-align:center;letter-spacing:-.01em}
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2.4vw,28px);margin-top:44px}
@@ -232,7 +231,6 @@ section[id]{scroll-margin-top:72px}
 /* Responsive */
 @media (max-width:900px){
   .fees-grid{grid-template-columns:1fr;max-width:520px;margin:auto}
-  .proof{transform:none;max-width:420px;margin:auto}
   .mid{flex-direction:row;justify-content:center}
   .mid .arrow{transform:rotate(90deg)}
   .cards,.posts{grid-template-columns:1fr 1fr}
@@ -263,7 +261,6 @@ section[id]{scroll-margin-top:72px}
 }
 @media (max-width:640px){
   .hdr-cta .btn{padding:10px 16px;font-size:13.5px}
-  .proof{max-height:420px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 </style>
@@ -282,10 +279,10 @@ section[id]{scroll-margin-top:72px}
 
 <header class="hdr" id="top">
   <div class="wrap hdr-in">
-    <span class="logo"><img src="https://www.choreonconcept.com/wp-content/uploads/2021/05/cropped-Choreo-N-Concept-Logo-2.png" alt="Choreo N Concept" width="160" height="40"></span>
+    <span class="logo"><img src="assets/logo.png" alt="Choreo N Concept" width="160" height="40"></span>
     <div class="hdr-cta">
       <a class="phone" href="tel:+919811866443"><svg width="16" height="16"><use href="#i-phone"/></svg>+91 9811866443</a>
-      <button class="btn btn-red" type="button" data-book>Book Your Trial</button>
+      <button class="btn btn-red" type="button" data-book>Request a Callback</button>
     </div>
   </div>
 </header>
@@ -315,7 +312,7 @@ section[id]{scroll-margin-top:72px}
     <div class="wrap">
       <h2 class="h2-s center">Google's Highest Reviewed Online Dance Classes</h2>
       <div class="why">
-        <img src="https://www.choreonconcept.com/wp-content/uploads/2021/06/Choreo-N-Concept.jpg" alt="Learn from basics, online dance classes at Choreo N Concept" width="380" height="380" loading="lazy">
+        <img src="assets/learn-from-basics.jpg" alt="Learn from basics, online dance classes at Choreo N Concept" width="380" height="380" loading="lazy">
         <ul class="ticks">
           <li><svg><use href="#i-check"/></svg>Beginner &amp; Advance Levels</li>
           <li><svg><use href="#i-check"/></svg>Kids &amp; Adults Dance Classes</li>
@@ -355,21 +352,21 @@ section[id]{scroll-margin-top:72px}
   <section class="sec fees" id="fees">
     <div class="wrap fees-grid">
       <div class="proof">
-        <img src="https://www.choreonconcept.com/wp-content/uploads/2021/06/4.jpg" alt="Google reviews for Choreo N Concept Studio" width="819" height="1024" loading="lazy" draggable="false">
+        <img src="assets/google-review.jpg" alt="Google reviews for Choreo N Concept Studio" width="1080" height="1350" loading="lazy" draggable="false">
       </div>
       <div class="mid">
-        <button class="btn btn-red btn-lg" type="button" data-book>Book A Trial</button>
+        <a class="btn btn-red btn-lg" href="#fees-form">Book A Trial</a>
         <span class="arrow" aria-hidden="true"><svg width="28" height="28"><use href="#i-arrow"/></svg></span>
       </div>
-      <div class="form-card">
+      <div class="form-card" id="fees-form">
         <div class="fc-head">
-          <h2>FEES &amp; TIMING</h2>
-          <p>You will receive an email with the class details; Our executive will help with the same.</p>
+          <h2>Book a Trial</h2>
+          <p>A team member will reach out to you to book your trial session.</p>
         </div>
         <div class="fc-body"><div class="fc-frame"><iframe src="https://link.leadpipelyne.com/widget/form/RWv8n0lPK6qoK3LD5QSK" id="inline-RWv8n0lPK6qoK3LD5QSK"
           data-layout="{'id':'INLINE'}" data-trigger-type="alwaysShow" data-trigger-value="" data-activation-type="alwaysActivated"
-          data-activation-value="" data-deactivation-type="neverDeactivate" data-deactivation-value="" data-form-name="Fees &amp; Timing"
-          data-height="496" data-layout-iframe-id="inline-RWv8n0lPK6qoK3LD5QSK" data-form-id="RWv8n0lPK6qoK3LD5QSK" title="Fees &amp; Timing form"></iframe></div>
+          data-activation-value="" data-deactivation-type="neverDeactivate" data-deactivation-value="" data-form-name="Book a Trial"
+          data-height="496" data-layout-iframe-id="inline-RWv8n0lPK6qoK3LD5QSK" data-form-id="RWv8n0lPK6qoK3LD5QSK" title="Book a trial form"></iframe></div>
           <div class="fc-foot"><svg viewBox="0 0 16 16"><use href="#i-check"/></svg>100% Money-Back Guarantee</div>
         </div>
       </div>
@@ -383,35 +380,35 @@ section[id]{scroll-margin-top:72px}
       <div class="cards">
         <article class="card"><h3>Bollywood Dance</h3><span class="dash"></span>
           <p>Bollywood Dancing is in our blood. It’s drama, energy and so much fun! The class is taken by extremely talented and experienced instructors. Experience a part of Indian Cinema with Choreo N Concept’s Bollywood dance classes.</p>
-          <button class="btn" type="button" data-book>Book Now</button></article>
+          <button class="btn" type="button" data-book>Request a Callback</button></article>
         <article class="card"><h3>Kids &amp; Pre Teens</h3><span class="dash"></span>
           <p>High in demand, our dance classes for kids and pre-teens are loved by all. The kids explore the world of dance with instructors who are known for the bond they form with their students. Songs of your choice and fun activities throughout.</p>
-          <button class="btn" type="button" data-book>Book Now</button></article>
+          <button class="btn" type="button" data-book>Request a Callback</button></article>
         <article class="card"><h3>Hip Hop Dance</h3><span class="dash"></span>
           <p>A free, positive and energetic vibe is what you’l find in the Hip Hop dance classes. They are taken by instructors who help you grow while teaching you a style that itself evolves. Grow not just as a dancer, but also with your confidence.</p>
-          <button class="btn" type="button" data-book>Book Now</button></article>
+          <button class="btn" type="button" data-book>Request a Callback</button></article>
         <article class="card"><h3>Wedding Choreography</h3><span class="dash"></span>
           <p>Your first dance together or that big family performance, we’re here for you. Have a stunning final performance and rehearsals filled with laughter! Our team puts in their heart and soul to create a dream event for you and your family.</p>
-          <button class="btn" type="button" data-book>Book Now</button></article>
+          <button class="btn" type="button" data-book>Request a Callback</button></article>
         <article class="card"><h3>Dance &amp; Fitness</h3><span class="dash"></span>
           <p>A balance between having fun and dancing, CNC’s dance fitness classes will help you reach your fitness goal and go beyond. Motivation, energy, support, comfort, all at one place in the environment our instructors create for you!</p>
-          <button class="btn" type="button" data-book>Book Now</button></article>
+          <button class="btn" type="button" data-book>Request a Callback</button></article>
         <article class="card"><h3>Semi Classical</h3><span class="dash"></span>
           <p>The grace and beauty of Indian Classical with a hint of Bollywood makes this style. Explore the Indian culture in the comfortable atmosphere of class carefully created by our instructors who are classically trained. Experience and enjoy!</p>
-          <button class="btn" type="button" data-book>Book Now</button></article>
+          <button class="btn" type="button" data-book>Request a Callback</button></article>
       </div>
 
       <h2 class="second">The Best way to learn</h2>
       <div class="cards amber">
         <article class="card"><h3>Virtual Group Classes</h3><span class="dash"></span>
           <p>Choreo N Concept’s virtual dance classes have been extremely popular in not only India but also all across the globe. Explore different styles and pick your favourite. Grow with others and vibe to your favourite music.</p>
-          <button class="btn" type="button" data-book>Book Now</button></article>
+          <button class="btn" type="button" data-book>Request a Callback</button></article>
         <article class="card"><h3>Virtual Private Classes</h3><span class="dash"></span>
           <p>Feeling shy or want that extra push, just go for private classes. Pick your style, instructor and timing. Learn at your comfort and step towards growth. Experience and explore, start with a free trial!</p>
-          <button class="btn" type="button" data-book>Book Now</button></article>
+          <button class="btn" type="button" data-book>Request a Callback</button></article>
         <article class="card"><h3>Dance On Demand</h3><span class="dash"></span>
           <p>Have a specific song in mind that you want to learn on? Choose any song, and any style of your choice; we will make a complete 2 minutes choreography with it’s tutorial specially for you!</p>
-          <button class="btn" type="button" data-book>Book Now</button></article>
+          <button class="btn" type="button" data-book>Request a Callback</button></article>
       </div>
     </div>
   </section>
@@ -432,13 +429,13 @@ section[id]{scroll-margin-top:72px}
         <figure><div class="vid r11"><iframe src="https://player.vimeo.com/video/452134880" title="Parent review" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div></figure>
         <figure><div class="vid r11"><iframe src="https://player.vimeo.com/video/452134719" title="Parent review" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div></figure>
       </div>
+      <div class="center" style="margin-top:28px"><a class="btn btn-red btn-lg" href="#fees-form">I would like to book a trial</a></div>
     </div>
   </section>
 
   <!-- Google review -->
-  <section class="sec center" style="padding-top:0">
+  <section class="sec center">
     <div class="wrap">
-      <button class="btn btn-red" type="button" data-book style="margin-bottom:36px">I would like to book my free trial!</button>
       <h2 class="h2" style="font-size:clamp(34px,5vw,56px)">Google review</h2>
       <div class="t-wrap">
         <div class="t-track" id="tTrack" tabindex="0" aria-label="Google reviews">
@@ -482,7 +479,7 @@ section[id]{scroll-margin-top:72px}
   <section class="contact">
     <div class="wrap c-grid">
       <div>
-        <button class="btn btn-red" type="button" data-book>Book Your Trial</button>
+        <button class="btn btn-red" type="button" data-book>Request a Callback</button>
         <div class="c-list">
           <a class="c-item" href="mailto:choreonconcept@gmail.com"><svg width="20" height="20"><use href="#i-mail"/></svg>choreonconcept@gmail.com</a>
           <a class="c-item" href="tel:+919811866443"><svg width="20" height="20"><use href="#i-phone"/></svg>+91 9811866443 / 45</a>
@@ -504,7 +501,7 @@ section[id]{scroll-margin-top:72px}
 </footer>
 
 <div class="mbar" role="region" aria-label="Quick actions">
-  <button class="btn btn-red" type="button" data-book>Book Your Trial</button>
+  <button class="btn btn-red" type="button" data-book>Request a Callback</button>
   <a class="call" href="tel:+919811866443" aria-label="Call +91 9811866443"><svg width="22" height="22"><use href="#i-phone"/></svg></a>
 </div>
 
@@ -517,8 +514,8 @@ section[id]{scroll-margin-top:72px}
     <button class="modal-x" type="button" aria-label="Close" data-close-modal>&#x2715;</button>
     <div class="form-card">
       <div class="fc-head">
-        <h2 id="modalTitle">FEES &amp; TIMING</h2>
-        <p>You will receive an email with the class details; Our executive will help with the same.</p>
+        <h2 id="modalTitle">Request a Callback</h2>
+        <p>Share your details and a team member will call you back to help you pick the right class.</p>
       </div>
       <div class="fc-body">
         <div class="fc-frame" id="modalForm"></div>
@@ -542,7 +539,7 @@ section[id]{scroll-margin-top:72px}
     if(!slot.firstChild){
       var f=document.createElement('iframe');
       f.src='https://link.leadpipelyne.com/widget/form/RWv8n0lPK6qoK3LD5QSK';
-      f.title='Book your trial form';f.id='popup-RWv8n0lPK6qoK3LD5QSK';
+      f.title='Request a callback form';f.id='popup-RWv8n0lPK6qoK3LD5QSK';
       slot.appendChild(f);
     }
     lastFocus=document.activeElement;
