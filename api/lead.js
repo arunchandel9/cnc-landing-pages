@@ -63,8 +63,8 @@ module.exports = async (req, res) => {
   const src = (t.utm_source || '').toLowerCase();
   let source = 'Ad Landing Page';
   if (t.fbclid || /facebook|instagram|meta|fb|ig/.test(src)) source = 'Meta Ad';
-  else if (t.gclid || /google|youtube|adwords/.test(src)) source = 'Google Ad';
-  const pageName = /wedding/i.test(lead.page) ? 'Wedding Choreography' : /fees-timing/i.test(lead.page) ? 'Fees & Timing' : (lead.title || 'Landing page');
+  else if (t.gclid || /google|youtube|adwords/.test(src) || /-google\//i.test(lead.page)) source = 'Google Ad';
+  const pageName = (/wedding/i.test(lead.page) ? 'Wedding Choreography' : /fees-timing/i.test(lead.page) ? 'Fees & Timing' : (lead.title || 'Landing page')) + (/-google\//i.test(lead.page) ? ', Google version' : '');
   const rows = [
     ['Source', `${source} (${pageName} page)`], ['Form', lead.form], ['Name', lead.name], ['Email', lead.email], ['Phone', lead.phone],
     ['Page', lead.page], ['Referrer', lead.referrer || 'Direct'], ['Received', lead.at + ' IST'],
