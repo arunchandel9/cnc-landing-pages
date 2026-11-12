@@ -137,14 +137,16 @@ strong{font-weight:700;color:#3a2a2a}
 .pkg ul{list-style:none;margin:0;padding:18px 20px 22px;display:grid;gap:2px}
 .pkg li{display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed rgba(155,45,45,.14);font:500 15px/1.45 var(--head);color:#3b3030}
 .pkg li:last-child{border-bottom:0}
+.pkg ul{flex:1}
+.pkg-cta{padding:0 20px 22px}
+.pkg-cta .btn{width:100%}
 .pkg li svg{flex:none;width:16px;height:16px;margin-top:2px;color:var(--title)}
 .pkg li.first{font-weight:700;font-size:17px;color:#1d1515}
 .pkg li.bonus{margin-top:6px;border-bottom:0;font:700 12px var(--head);letter-spacing:.16em;text-transform:uppercase;color:#B87800}
 .pkg li.bx svg{color:#B87800}
 
 /* 15. How we teach */
-.teach3{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(18px,2.6vw,30px);margin-top:44px}
-.teach3 .svc-card:last-child{grid-column:1/-1;max-width:760px;justify-self:center;width:100%}
+.teach3{display:grid;grid-template-columns:repeat(2,1fr);max-width:1000px;margin-inline:auto;gap:clamp(18px,2.6vw,30px);margin-top:44px}
 .ic-sm{display:grid;place-items:center;width:64px;height:64px;border-radius:50%;background:#FBEDED;color:var(--title)}
 .ic-sm svg{width:28px;height:28px}
 .svc-card .ic-sm+h3{margin-top:18px}
@@ -223,6 +225,8 @@ strong{font-weight:700;color:#3a2a2a}
 .modal.open{visibility:visible}.modal.open .modal-bg{opacity:1}.modal.open .modal-box{transform:none;opacity:1}
 .modal-x{position:absolute;top:12px;right:12px;z-index:2;width:36px;height:36px;border-radius:50%;border:0;background:rgba(255,255,255,.16);color:#fff;cursor:pointer;display:grid;place-items:center}
 
+/* Mobile action bar */
+.mbar{display:none}
 /* Responsive */
 @media (max-width:1024px){
   .pkgs{grid-template-columns:repeat(2,1fr)}
@@ -256,7 +260,15 @@ strong{font-weight:700;color:#3a2a2a}
   .svc,.teach3,.pkgs,.cards,.contact{grid-template-columns:1fr}
   .svc-ic{width:96px;height:96px}.svc-ic svg,.svc-ic img{width:60px;height:60px}
   .stat{padding:22px 10px 18px}
-  .wa-float{left:auto;right:14px;bottom:14px;width:54px;height:54px;border-radius:50%}
+  .hdr .btn{display:none}
+  .hdr-in{justify-content:center}
+  .mbar{display:flex;gap:10px;position:fixed;left:0;right:0;bottom:0;z-index:70;padding:10px 12px calc(10px + env(safe-area-inset-bottom));
+    background:rgba(255,255,255,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--line);box-shadow:0 -10px 30px -12px rgba(70,20,20,.25)}
+  .mbar .call{flex:0 0 38%;display:flex;align-items:center;justify-content:center;gap:8px;height:52px;border-radius:999px;background:#fff;color:var(--red-deep);font:700 16px var(--head);text-decoration:none;box-shadow:inset 0 0 0 1.5px var(--red-deep)}
+  .mbar .btn{flex:1;height:52px;font-size:16px}
+  body{padding-bottom:calc(76px + env(safe-area-inset-bottom))}
+  .ftr{padding-bottom:40px}
+  .wa-float{left:auto;right:14px;bottom:calc(86px + env(safe-area-inset-bottom));width:54px;height:54px;border-radius:50%}
   .lb .lb-p,.lb .lb-n{top:auto;bottom:20px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
@@ -388,8 +400,6 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
         <div class="vid"><iframe data-src="https://player.vimeo.com/video/702021396" title="Wedding performance 2" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
         <div class="vid"><iframe data-src="https://player.vimeo.com/video/702021333" title="Wedding performance 3" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
         <div class="vid"><iframe data-src="https://player.vimeo.com/video/702021262" title="Wedding performance 4" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
-        <div class="vid"><iframe data-src="https://player.vimeo.com/video/702021194" title="Wedding performance 5" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
-        <div class="vid"><iframe data-src="https://player.vimeo.com/video/702021103" title="Wedding performance 6" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
         <div class="vid"><iframe data-src="https://player.vimeo.com/video/702021032" title="Wedding performance 7" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
         <div class="vid"><iframe data-src="https://player.vimeo.com/video/702020962" title="Wedding performance 8" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
         <div class="vid"><iframe data-src="https://player.vimeo.com/video/702020890" title="Wedding performance 9" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
@@ -451,10 +461,10 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
   <!-- 13. Packages -->
   <section class="sec bg-ivory" style="padding-top:0">
     <div class="wrap pkgs">
-      <article class="pkg"><div class="pkg-h"><span>Package 1</span></div><ul><li class="first"><svg><use href="#i-check"/></svg>5 Performances</li><li><svg><use href="#i-check"/></svg>Performance Time: 15 mins</li><li><svg><use href="#i-check"/></svg>6 sessions – 1.5 hrs each</li><li><svg><use href="#i-check"/></svg>Home/Studio sessions</li><li><svg><use href="#i-check"/></svg>Online sessions available</li><li><svg><use href="#i-check"/></svg>1 Choreographer (M/F)</li><li class="bonus">Bonus:</li><li class="bx"><svg><use href="#i-gift"/></svg>Rehearsal BTS Video</li></ul></article>
-      <article class="pkg"><div class="pkg-h"><span>Package 2</span></div><ul><li class="first"><svg><use href="#i-check"/></svg>8 Performances</li><li><svg><use href="#i-check"/></svg>Performance Time: 30 mins</li><li><svg><use href="#i-check"/></svg>6 sessions – 2 hrs each</li><li><svg><use href="#i-check"/></svg>Home/Studio sessions</li><li><svg><use href="#i-check"/></svg>Online sessions available</li><li><svg><use href="#i-check"/></svg>2 Choreographers (M/F)</li><li class="bonus">Bonus:</li><li class="bx"><svg><use href="#i-gift"/></svg>Final Day Rehearsal</li><li class="bx"><svg><use href="#i-gift"/></svg>Rehearsals BTS Video</li></ul></article>
-      <article class="pkg"><div class="pkg-h"><span>Package 3</span></div><ul><li class="first"><svg><use href="#i-check"/></svg>12 Performances</li><li><svg><use href="#i-check"/></svg>Performance Time: 45 mins</li><li><svg><use href="#i-check"/></svg>10-12 sessions – 1.5 hrs each</li><li><svg><use href="#i-check"/></svg>Home/Studio sessions</li><li><svg><use href="#i-check"/></svg>Online sessions available</li><li><svg><use href="#i-check"/></svg>2-3 Choreographers (M/F)</li><li class="bonus">Bonus:</li><li class="bx"><svg><use href="#i-gift"/></svg>Bride and Groom Entry with Dancers</li><li class="bx"><svg><use href="#i-gift"/></svg>Final Day Rehearsal</li><li class="bx"><svg><use href="#i-gift"/></svg>Rehearsals BTS Video</li></ul></article>
-      <article class="pkg"><div class="pkg-h"><span>Package 4</span></div><ul><li class="first"><svg><use href="#i-check"/></svg>12-15 Performances</li><li><svg><use href="#i-check"/></svg>Performance Time: 1 hour</li><li><svg><use href="#i-check"/></svg>15 sessions – 2 hrs each</li><li><svg><use href="#i-check"/></svg>Home/Studio sessions</li><li><svg><use href="#i-check"/></svg>Online sessions available</li><li><svg><use href="#i-check"/></svg>3-4 Choreographers (M/F)</li><li class="bonus">Bonus:</li><li class="bx"><svg><use href="#i-gift"/></svg>Backup Dancers</li><li class="bx"><svg><use href="#i-gift"/></svg>Bride and Groom Entry with Dancers</li><li class="bx"><svg><use href="#i-gift"/></svg>Final Day Rehearsal</li><li class="bx"><svg><use href="#i-gift"/></svg>Rehearsals BTS Video</li></ul></article>
+      <article class="pkg"><div class="pkg-h"><span>Package 1</span></div><ul><li class="first"><svg><use href="#i-check"/></svg>5 Performances</li><li><svg><use href="#i-check"/></svg>Performance Time: 15 mins</li><li><svg><use href="#i-check"/></svg>6 sessions – 1.5 hrs each</li><li><svg><use href="#i-check"/></svg>Home/Studio sessions</li><li><svg><use href="#i-check"/></svg>Online sessions available</li><li><svg><use href="#i-check"/></svg>1 Choreographer (M/F)</li><li class="bonus">Bonus:</li><li class="bx"><svg><use href="#i-gift"/></svg>Rehearsal BTS Video</li></ul><div class="pkg-cta"><button class="btn btn-red" type="button" data-pkg="Package 1">Know More</button></div></article>
+      <article class="pkg"><div class="pkg-h"><span>Package 2</span></div><ul><li class="first"><svg><use href="#i-check"/></svg>8 Performances</li><li><svg><use href="#i-check"/></svg>Performance Time: 30 mins</li><li><svg><use href="#i-check"/></svg>6 sessions – 2 hrs each</li><li><svg><use href="#i-check"/></svg>Home/Studio sessions</li><li><svg><use href="#i-check"/></svg>Online sessions available</li><li><svg><use href="#i-check"/></svg>2 Choreographers (M/F)</li><li class="bonus">Bonus:</li><li class="bx"><svg><use href="#i-gift"/></svg>Final Day Rehearsal</li><li class="bx"><svg><use href="#i-gift"/></svg>Rehearsals BTS Video</li></ul><div class="pkg-cta"><button class="btn btn-red" type="button" data-pkg="Package 2">Know More</button></div></article>
+      <article class="pkg"><div class="pkg-h"><span>Package 3</span></div><ul><li class="first"><svg><use href="#i-check"/></svg>12 Performances</li><li><svg><use href="#i-check"/></svg>Performance Time: 45 mins</li><li><svg><use href="#i-check"/></svg>10-12 sessions – 1.5 hrs each</li><li><svg><use href="#i-check"/></svg>Home/Studio sessions</li><li><svg><use href="#i-check"/></svg>Online sessions available</li><li><svg><use href="#i-check"/></svg>2-3 Choreographers (M/F)</li><li class="bonus">Bonus:</li><li class="bx"><svg><use href="#i-gift"/></svg>Bride and Groom Entry with Dancers</li><li class="bx"><svg><use href="#i-gift"/></svg>Final Day Rehearsal</li><li class="bx"><svg><use href="#i-gift"/></svg>Rehearsals BTS Video</li></ul><div class="pkg-cta"><button class="btn btn-red" type="button" data-pkg="Package 3">Know More</button></div></article>
+      <article class="pkg"><div class="pkg-h"><span>Package 4</span></div><ul><li class="first"><svg><use href="#i-check"/></svg>12-15 Performances</li><li><svg><use href="#i-check"/></svg>Performance Time: 1 hour</li><li><svg><use href="#i-check"/></svg>15 sessions – 2 hrs each</li><li><svg><use href="#i-check"/></svg>Home/Studio sessions</li><li><svg><use href="#i-check"/></svg>Online sessions available</li><li><svg><use href="#i-check"/></svg>3-4 Choreographers (M/F)</li><li class="bonus">Bonus:</li><li class="bx"><svg><use href="#i-gift"/></svg>Backup Dancers</li><li class="bx"><svg><use href="#i-gift"/></svg>Bride and Groom Entry with Dancers</li><li class="bx"><svg><use href="#i-gift"/></svg>Final Day Rehearsal</li><li class="bx"><svg><use href="#i-gift"/></svg>Rehearsals BTS Video</li></ul><div class="pkg-cta"><button class="btn btn-red" type="button" data-pkg="Package 4">Know More</button></div></article>
     </div>
   </section>
 
@@ -463,17 +473,13 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
     <div class="wrap">
       <h2 class="h2">How we teach</h2>
       <div class="teach3">
-        <article class="svc-card"><span class="ic-sm"><svg viewBox="0 0 24 24"><path fill="currentColor" d="m12 2 3 6.5 7 .7-5.3 4.7 1.6 7L12 17.3 5.7 21l1.6-7L2 9.2l7-.7z"/></svg></span>
-          <h3>Hire the studio</h3>
-          <p>You can hire the studio and work with our wedding choreographer. For many people, it’s easier to practice in front of a mirror. if you don’t want to rehearse at home. You have to book the studio in advance.</p>
+        <article class="svc-card"><span class="ic-sm"><svg aria-hidden="true" viewBox="0 0 220.08 220.08" fill="currentColor" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"><path d="M38.7 67h142.7v72H38.7zM220 156.6c0 10.9-8.8 19.7-19.7 19.7H19.7A19.7 19.7 0 0 1 0 156.6c0-3 2.4-5.4 5.4-5.4h10.3v-102c0-3 2.4-5.4 5.3-5.4h178c3 0 5.4 2.4 5.4 5.4v102h10.3c3 0 5.4 2.4 5.4 5.4M27.9 144.4c0 3 2.4 5.4 5.4 5.4h153.5c3 0 5.4-2.4 5.4-5.4V61.7c0-3-2.4-5.4-5.4-5.4H33.3c-3 0-5.4 2.4-5.4 5.4z"/></svg></span>
+          <h3>Virtual Wedding Classes</h3>
+          <p>Finally, as we all know about the current situation, Our wedding choreographers team has already been taking many virtual wedding choreography classes. Doesn’t matter where you live; We can help you plan your upcoming wedding /sangeet event virtually, Anytime &amp; Anywhere. Let’s discuss over call and plan from rehearsal to scriptwriting to execution; everything virtually.</p>
           <button class="btn btn-red" type="button" data-book>Book Now</button></article>
         <article class="svc-card"><span class="ic-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.8 2.8L16.5 9.5"/></svg></span>
           <h3>Tutor at Home</h3>
           <p>The second-best option, you can hire the wedding choreographers and plan your rehearsals at home. According to age &amp; performance, you can invite your relatives and friends for practice sessions.</p>
-          <button class="btn btn-red" type="button" data-book>Book Now</button></article>
-        <article class="svc-card"><span class="ic-sm"><svg aria-hidden="true" viewBox="0 0 220.08 220.08" fill="currentColor" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"><path d="M38.7 67h142.7v72H38.7zM220 156.6c0 10.9-8.8 19.7-19.7 19.7H19.7A19.7 19.7 0 0 1 0 156.6c0-3 2.4-5.4 5.4-5.4h10.3v-102c0-3 2.4-5.4 5.3-5.4h178c3 0 5.4 2.4 5.4 5.4v102h10.3c3 0 5.4 2.4 5.4 5.4M27.9 144.4c0 3 2.4 5.4 5.4 5.4h153.5c3 0 5.4-2.4 5.4-5.4V61.7c0-3-2.4-5.4-5.4-5.4H33.3c-3 0-5.4 2.4-5.4 5.4z"/></svg></span>
-          <h3>Virtual Wedding Classes</h3>
-          <p>Finally, as we all know about the current situation, Our wedding choreographers team has already been taking many virtual wedding choreography classes. Doesn’t matter where you live; We can help you plan your upcoming wedding /sangeet event virtually, Anytime &amp; Anywhere. Let’s discuss over call and plan from rehearsal to scriptwriting to execution; everything virtually.</p>
           <button class="btn btn-red" type="button" data-book>Book Now</button></article>
       </div>
     </div>
@@ -573,6 +579,11 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
   </div>
 </footer>
 
+<div class="mbar" role="region" aria-label="Quick actions">
+  <a class="call" href="tel:+919811866443"><svg width="20" height="20"><use href="#i-phone"/></svg>Call</a>
+  <button class="btn btn-red" type="button" data-trial>Book Your Trial</button>
+</div>
+
 <a class="wa-float" href="https://wa.me/919811866443" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><svg width="30" height="30"><use href="#i-wa"/></svg></a>
 
 <!-- Gallery lightbox -->
@@ -616,8 +627,8 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
     callback:{t:'Request a Callback',p:'Share your details and a team member will call you back.'},
     trial:{t:'Book Your Trial',p:'A team member will reach out to you to book your trial session.'}
   };
-  function openModal(mode){
-    var m=MODES[mode]||MODES.callback;
+  function openModal(mode,pkg){
+    var m=pkg?{t:pkg+' Details',p:'Share your details and a team member will call you with everything included in '+pkg+'.'}:(MODES[mode]||MODES.callback);
     document.getElementById('modalTitle').textContent=m.t;
     document.getElementById('modalSub').textContent=m.p;
     if(!slot.firstChild){var f=document.createElement('iframe');f.src='https://link.leadpipelyne.com/widget/form/RWv8n0lPK6qoK3LD5QSK';f.id='popup-RWv8n0lPK6qoK3LD5QSK';slot.appendChild(f)}
@@ -629,6 +640,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
   function closeModal(){if(!modal.classList.contains('open'))return;modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.style.overflow='';if(lastFocus&&lastFocus.focus)lastFocus.focus()}
   document.querySelectorAll('[data-book]').forEach(function(b){b.addEventListener('click',function(){openModal('callback')})});
   document.querySelectorAll('[data-trial]').forEach(function(b){b.addEventListener('click',function(){openModal('trial')})});
+  document.querySelectorAll('[data-pkg]').forEach(function(b){b.addEventListener('click',function(){openModal('pkg',b.getAttribute('data-pkg'))})});
   modal.querySelectorAll('[data-close-modal]').forEach(function(b){b.addEventListener('click',closeModal)});
 
   // Counters count up once when seen
