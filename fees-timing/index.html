@@ -131,7 +131,7 @@ p{margin:0}
   background:radial-gradient(120% 140% at 85% -20%,rgba(255,171,0,.28),transparent 55%),radial-gradient(90% 120% at 0% 120%,rgba(0,0,0,.35),transparent 60%),linear-gradient(150deg,#C42424,#8E1818)}
 .fc-head h2{font:700 clamp(26px,3vw,32px)/1.15 var(--head);color:#fff;letter-spacing:.01em;padding:0 24px}
 .fc-head p{margin:10px auto 0;max-width:320px;font:500 15px/1.5 var(--head);color:rgba(255,255,255,.88)}
-#fees-form{scroll-margin-top:84px}
+#fees-form,#reviews,#guarantee,#classes,#parents,#showcase{scroll-margin-top:84px}
 .fc-body{position:relative;margin:-34px 14px 0;background:#fff;border-radius:var(--r-md);box-shadow:0 10px 30px -14px rgba(70,20,20,.35);overflow:hidden}
 .lead-form{display:grid;gap:12px;padding:20px 18px 6px}
 .lead-form[hidden]{display:none}
@@ -421,7 +421,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
         </ul>
       </div>
 
-      <h2 class="h2 center reviews-h">Students Reviews</h2>
+      <h2 class="h2 center reviews-h" id="reviews">Students Reviews</h2>
       <div class="pair">
         <figure>
           <div class="vid r11"><iframe src="https://cineo.mangoeyes.io/embed/9fa4d9dc-50cb-4910-ad1e-7807b454d3a0" title="Student review: Lakshita" loading="lazy" allow="autoplay; fullscreen; picture-in-picture; encrypted-media" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
@@ -436,7 +436,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
   </section>
 
   <!-- Guarantee -->
-  <section class="sec guarantee" style="padding-top:0">
+  <section class="sec guarantee" id="guarantee" style="padding-top:0">
     <div class="wrap">
       <div class="g-card">
         <h3 class="g-pre">We say it because we believe in quality education</h3>
@@ -482,7 +482,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
   </section>
 
   <!-- What we teach -->
-  <section class="sec teach">
+  <section class="sec teach" id="classes">
     <div class="wrap">
       <h2>What we Teach</h2>
       <div class="cards">
@@ -530,7 +530,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
   </section>
 
   <!-- Parents review -->
-  <section class="sec parents">
+  <section class="sec parents" id="parents">
     <div class="wrap">
       <h2 class="ruled">Parents review about online classes</h2>
       <div class="pair">
@@ -575,7 +575,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
   <!-- Weekly showcase -->
   <section class="sec" style="padding-top:0">
     <div class="wrap">
-      <h2 class="h2-s center">Our Weekly Students showcase</h2>
+      <h2 class="h2-s center" id="showcase">Our Weekly Students showcase</h2>
       <div class="pair">
         <div class="vid r169"><iframe src="https://www.youtube.com/embed/GAIag75qbZE" title="Student's Showcase, Hip Hop" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
         <div class="vid r169"><iframe src="https://www.youtube.com/embed/zH1AoLoB33c" title="Online Dance Classes, Bollywood Dance classes" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
