@@ -43,6 +43,7 @@ module.exports = async (req, res) => {
     name: clean(body.name, 80),
     email: clean(body.email, 120),
     phone: clean(body.phone, 24),
+    eventDate: clean(body.event_date, 20),
     page: clean(body.page, 500),
     title: clean(body.page_title, 200),
     referrer: clean(body.referrer, 500),
@@ -66,7 +67,7 @@ module.exports = async (req, res) => {
   else if (t.gclid || /google|youtube|adwords/.test(src) || /-google\//i.test(lead.page)) source = 'Google Ad';
   const pageName = (/wedding/i.test(lead.page) ? 'Wedding Choreography' : /fees-timing/i.test(lead.page) ? 'Fees & Timing' : (lead.title || 'Landing page')) + (/-google\//i.test(lead.page) ? ', Google version' : '');
   const rows = [
-    ['Source', `${source} (${pageName} page)`], ['Form', lead.form], ['Name', lead.name], ['Email', lead.email], ['Phone', lead.phone],
+    ['Source', `${source} (${pageName} page)`], ['Form', lead.form], ['Name', lead.name], ['Email', lead.email], ['Phone', lead.phone], ...(lead.eventDate ? [['Event date', lead.eventDate]] : []),
     ['Page', lead.page], ['Referrer', lead.referrer || 'Direct'], ['Received', lead.at + ' IST'],
     ...tracking,
   ];
