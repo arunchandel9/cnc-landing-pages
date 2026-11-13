@@ -248,6 +248,77 @@ strong{font-weight:700;color:#3a2a2a}
 
 /* Mobile action bar */
 .mbar{display:none}
+/* Floating video (Wedding Dance Highlights, Cineo). Ported from the Leicester MediSpa campaign pages, sized for a 16:9 film.
+   Hidden on load, slides in from the right on the first scroll and stays. A tap on the small card lands on Cineo's own player
+   (so it plays with sound) and the same iframe grows into a centred view with two actions below. Minimise keeps it playing; close hides it for the visit. */
+.cv{--c-w:170px;--c-r:12px;--c-b:16px;--x-w:340px;--x-r:12px;--x-b:12px;--safe-b:env(safe-area-inset-bottom,0px);--cv-ease:cubic-bezier(.22,1,.36,1);--cv-pop:cubic-bezier(.3,1.25,.5,1);--cv-s:.72;--cv-sc:.62;position:relative;z-index:65}
+@media (min-width:768px){.cv{--cv-s:.75;--cv-sc:.7}}
+.cv-panel{position:fixed;z-index:66;right:var(--c-r);bottom:calc(var(--c-b) + 32px);width:var(--c-w);display:flex;flex-direction:column;border-radius:16px;
+  transform:translateX(calc(100% + var(--c-r) + 48px));opacity:0;visibility:hidden;
+  transition:transform .55s var(--cv-pop),opacity .3s var(--cv-ease),right .45s var(--cv-ease),bottom .45s var(--cv-ease),width .45s var(--cv-ease),visibility 0s .55s}
+.cv.is-shown .cv-panel{transform:none;opacity:1;visibility:visible;transition-delay:.12s,.12s,0s,0s,0s,0s}
+.cv.is-tucked:not(.is-expanded) .cv-panel{transform:translateX(calc(100% + var(--c-r) + 48px));transition-delay:0s}
+.cv-box{display:flex;flex-direction:column;border-radius:22px;background:transparent;transition:padding .45s var(--cv-ease),background-color .3s var(--cv-ease),box-shadow .45s var(--cv-ease)}
+.cv-video{position:relative;width:100%;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:#000;border:2px solid #fff;
+  box-shadow:0 18px 40px -16px rgba(60,10,10,.6),0 0 0 4px rgba(155,45,45,.12);transition:border-width .3s var(--cv-ease),border-radius .45s var(--cv-ease),box-shadow .45s var(--cv-ease),transform .3s var(--cv-ease)}
+.cv-video iframe{position:absolute;inset:0;display:block;width:100%;height:100%;border:0;background:#000}
+/* Cineo draws fixed-size controls; scale the player so its button suits the card. On the small card the player is taller than the card,
+   so the video letterboxes into the middle and Cineo's control bar falls in the clipped strip: just the moving preview and play button show */
+.cv.is-expanded .cv-video iframe{right:auto;bottom:auto;width:calc(100% / var(--cv-s));height:calc(100% / var(--cv-s));transform:scale(var(--cv-s));transform-origin:0 0}
+.cv:not(.is-expanded) .cv-video iframe{top:-60%;right:auto;bottom:auto;width:calc(100% / var(--cv-sc));height:calc(220% / var(--cv-sc));transform:scale(var(--cv-sc));transform-origin:0 0}
+@media (hover:hover){.cv.is-shown:not(.is-expanded) .cv-video:hover{transform:translateY(-2px)}}
+.cv-corner{position:absolute;z-index:3;top:-17px;display:grid;place-items:center;width:44px;height:44px;padding:0;border:0;background:transparent;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:opacity .25s var(--cv-ease)}
+.cv-corner--min{left:-17px}.cv-corner--x{right:-17px}
+.cv-corner i{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;color:#fff;border:1.5px solid #fff;box-shadow:0 4px 12px -4px rgba(0,0,0,.45);transition:transform .2s var(--cv-ease)}
+.cv-corner--min i{background:var(--red-hot)}.cv-corner--x i{background:#141414}
+.cv-corner svg{width:12px;height:12px}
+.cv-corner:active i{transform:scale(.9)}
+.cv-pill{position:absolute;z-index:3;left:50%;top:calc(100% - 4px);transform:translateX(-50%);display:flex;align-items:center;justify-content:center;height:44px;padding:0 6px;border:0;background:transparent;cursor:pointer;white-space:nowrap;-webkit-tap-highlight-color:transparent;transition:opacity .25s var(--cv-ease)}
+.cv-pill span{display:inline-flex;align-items:center;gap:6px;padding:6px 13px;border-radius:999px;background:#141414;color:#fff;border:1px solid rgba(255,255,255,.18);box-shadow:0 8px 18px -8px rgba(0,0,0,.6);font:700 10.5px/1.2 var(--head);letter-spacing:.12em;text-transform:uppercase}
+.cv-pill svg{width:10px;height:10px;flex:none;color:var(--amber)}
+.cv-pill .cv-pill-x{display:none}
+.cv.is-engaged .cv-pill .cv-pill-w{display:none}
+.cv.is-engaged .cv-pill .cv-pill-x{display:inline-flex}
+.cv-bar,.cv-ctas{max-height:0;opacity:0;visibility:hidden;overflow:hidden;transition:max-height .45s var(--cv-ease),opacity .3s var(--cv-ease),margin .45s var(--cv-ease),visibility 0s .45s}
+.cv-bar{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.cv-title{min-width:0;margin:0;padding-left:6px;line-height:1.25}
+.cv-title b{display:block;font:700 15px var(--head);color:#1a1414;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cv-title span{display:block;font-size:12.5px;color:var(--muted)}
+.cv-ctrls{display:flex;gap:2px;flex:none}
+.cv-btn{display:grid;place-items:center;width:44px;height:44px;padding:0;border:0;border-radius:50%;background:transparent;color:#1a1414;cursor:pointer}
+.cv-btn i{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:#F6EEEE;border:1px solid #EAD9D9;transition:background .2s,transform .2s}
+.cv-btn svg{width:14px;height:14px}
+.cv-btn--min i{background:var(--red-hot);border-color:var(--red-hot);color:#fff}
+.cv-btn:active i{transform:scale(.92)}
+.cv-ctas{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (min-width:768px){.cv-ctas{grid-template-columns:1fr}}
+.cv-ctas .btn{width:100%;min-height:48px;padding:12px 10px;font-size:15px;white-space:nowrap}
+.cv-ctas .btn-ghost{background:#fff;color:var(--red-deep);box-shadow:inset 0 0 0 1.5px var(--red-deep),0 14px 30px -12px rgba(0,0,0,.55)}
+.cv-ctas .btn-ghost:hover{background:#FBF1F1}
+.cv-ctas .cv-desk{display:none}
+@media (min-width:768px){.cv-ctas .cv-mob{display:none}.cv-ctas .cv-desk{display:inline-flex}}
+.cv.is-expanded .cv-panel{z-index:86;right:var(--x-r);bottom:var(--x-b);width:var(--x-w);transform:none;opacity:1;visibility:visible;transition-delay:0s}
+.cv.is-expanded .cv-box{padding:10px;background:#fff;box-shadow:0 40px 90px -30px rgba(0,0,0,.7)}
+.cv.is-expanded .cv-video{border-width:0;box-shadow:none}
+.cv.is-expanded .cv-bar{max-height:52px;margin-bottom:8px;opacity:1;visibility:visible;transition-delay:0s}
+.cv.is-expanded .cv-ctas{max-height:60px;margin-top:12px;opacity:1;visibility:visible;overflow:visible;transition-delay:0s}
+.cv.is-expanded .cv-corner,.cv.is-expanded .cv-pill{opacity:0;visibility:hidden;pointer-events:none}
+.cv-backdrop{position:fixed;inset:0;z-index:84;background:rgba(10,4,4,.55);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);opacity:0;visibility:hidden;transition:opacity .35s var(--cv-ease),visibility 0s .35s}
+.cv.is-expanded .cv-backdrop{opacity:1;visibility:visible;transition:opacity .35s var(--cv-ease)}
+.cv-tab{position:fixed;z-index:66;right:0;bottom:calc(var(--c-b) + 32px + (var(--c-w) * .5625 - 88px) / 2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;width:40px;height:88px;padding:0;border:1px solid rgba(255,255,255,.14);border-right:0;border-radius:12px 0 0 12px;background:#141414;color:#fff;cursor:pointer;box-shadow:-8px 10px 24px -10px rgba(0,0,0,.5);transform:translateX(110%);visibility:hidden;transition:transform .3s var(--cv-ease),visibility 0s .3s}
+.cv-tab svg{width:12px;height:12px;color:var(--amber)}
+.cv-tab span{font:700 10px var(--head);letter-spacing:.14em;text-transform:uppercase;writing-mode:vertical-rl}
+.cv-tab .cv-eq{display:none;align-items:flex-end;gap:2px;height:12px}
+.cv-tab .cv-eq b{display:block;width:2px;height:100%;background:var(--amber);border-radius:1px;animation:cvEq .9s ease-in-out infinite alternate}
+.cv-tab .cv-eq b:nth-child(2){animation-delay:.3s}.cv-tab .cv-eq b:nth-child(3){animation-delay:.6s}
+@keyframes cvEq{from{transform:scaleY(.3)}to{transform:scaleY(1)}}
+.cv.is-engaged .cv-tab .cv-eq{display:flex}
+.cv.is-engaged .cv-tab .cv-play{display:none}
+.cv.is-shown.is-tucked:not(.is-expanded) .cv-tab{transform:none;visibility:visible;transition:transform .4s var(--cv-ease) .15s}
+.cv.is-closed{display:none}
+.cv button:focus-visible{outline:none}
+.cv button:focus-visible i,.cv button:focus-visible span,.cv-tab:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+
 /* Responsive */
 @media (max-width:1024px){
   .pkgs{grid-template-columns:repeat(2,1fr)}
@@ -626,6 +697,33 @@ window.CNC_AW_SEND_TO='AW-760614527/jWhRCIPy4bcdEP-c2OoC';
 
 <a class="wa-float" href="https://wa.me/919811866443" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><svg width="30" height="30"><use href="#i-wa"/></svg></a>
 
+<!-- Floating video: Wedding Dance Highlights (Cineo). Appears on the first scroll and stays. One iframe for every state, so minimising never reloads it. -->
+<aside class="cv" id="cv" aria-label="Video: Wedding Dance Highlights">
+  <div class="cv-backdrop" id="cvBackdrop" aria-hidden="true"></div>
+  <div class="cv-panel" id="cvPanel" aria-labelledby="cvTitle">
+    <div class="cv-box">
+      <div class="cv-bar">
+        <p class="cv-title"><b id="cvTitle">Wedding Dance Highlights</b><span>Choreo N Concept</span></p>
+        <div class="cv-ctrls">
+          <button class="cv-btn cv-btn--min" type="button" data-cv="min" aria-label="Minimise video. It keeps playing" title="Minimise"><i><svg viewBox="0 0 20 20" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M5 10h10"/></svg></i></button>
+          <button class="cv-btn" type="button" data-cv="close" aria-label="Close video" title="Close"><i><svg viewBox="0 0 20 20" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M5 5l10 10M15 5 5 15"/></svg></i></button>
+        </div>
+      </div>
+      <div class="cv-video">
+        <iframe id="cvFrame" title="Wedding dance highlights, Choreo N Concept" data-src="https://cineo.mangoeyes.io/embed/476e2269-6203-479a-b4d2-0fe66306cc3f" allow="autoplay; fullscreen; picture-in-picture; encrypted-media" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      </div>
+    </div>
+    <button class="cv-corner cv-corner--min" type="button" data-cv="tuck" aria-label="Move video to the side" title="Minimise"><i><svg viewBox="0 0 20 20" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" d="M5 10h10"/></svg></i></button>
+    <button class="cv-corner cv-corner--x" type="button" data-cv="close" aria-label="Close video" title="Close"><i><svg viewBox="0 0 20 20" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M5.5 5.5l9 9M14.5 5.5l-9 9"/></svg></i></button>
+    <button class="cv-pill" type="button" data-cv="open" aria-label="Watch the video bigger"><span class="cv-pill-w"><svg viewBox="0 0 20 20" aria-hidden="true"><path fill="currentColor" d="M5 3.5v13l11-6.5z"/></svg>Watch now</span><span class="cv-pill-x"><svg viewBox="0 0 20 20" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M12 3h5v5M8 17H3v-5M17 3l-6 6M3 17l6-6"/></svg>Expand</span></button>
+    <div class="cv-ctas">
+      <a class="btn btn-ghost cv-mob" href="tel:+919811866443"><svg width="16" height="16"><use href="#i-phone"/></svg>Call Us</a>
+      <button class="btn btn-red" type="button" data-book data-cv-cta>Get in Touch</button>
+    </div>
+  </div>
+  <button class="cv-tab" type="button" data-cv="untuck" aria-label="Show the video again" title="Show video"><svg class="cv-play" viewBox="0 0 20 20" aria-hidden="true"><path fill="currentColor" d="M5 3.5v13l11-6.5z"/></svg><span class="cv-eq" aria-hidden="true"><b></b><b></b><b></b></span><span>Video</span></button>
+</aside>
+
 <!-- Gallery lightbox -->
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photo viewer">
   <figure><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure>
@@ -689,6 +787,7 @@ window.CNC_AW_SEND_TO='AW-760614527/jWhRCIPy4bcdEP-c2OoC';
     modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';
     var first=mForm.hidden?modal.querySelector('.modal-x'):mForm.elements.name;setTimeout(function(){first.focus()},60);
   }
+  window.cncModalOpen=function(){return modal.classList.contains('open')};
   function closeModal(){if(!modal.classList.contains('open'))return;modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.style.overflow='';if(lastFocus&&lastFocus.focus)lastFocus.focus()}
   document.querySelectorAll('[data-book]').forEach(function(b){b.addEventListener('click',function(){openModal('callback')})});
   document.querySelectorAll('[data-trial]').forEach(function(b){b.addEventListener('click',function(){openModal('trial')})});
@@ -765,6 +864,116 @@ window.CNC_AW_SEND_TO='AW-760614527/jWhRCIPy4bcdEP-c2OoC';
         .then(function(){btn.disabled=false;btn.classList.remove('loading')});
     });
   });
+})();
+
+/* Floating video (Wedding Dance Highlights), same behaviour as the Leicester MediSpa pages.
+   Cineo has no playback API for the host page and its autoplay is always muted, so the small card is never covered: the visitor's tap lands on
+   Cineo's own player (plays with sound). Focus then moves into the iframe, which is the cue to grow the same iframe into the big view, no reload. */
+(function(){
+  var root=document.getElementById('cv'); if(!root) return;
+  var KEY='cncWeddingVideoClosed';
+  try{ if(sessionStorage.getItem(KEY)==='1'){ root.classList.add('is-closed'); return; } }catch(e){}
+  var panel=document.getElementById('cvPanel'), frame=document.getElementById('cvFrame'), backdrop=document.getElementById('cvBackdrop');
+  var BASE=frame.getAttribute('data-src');
+  var bar=document.querySelector('.mbar'), wa=document.querySelector('.wa-float');
+  var st={passed:false,expanded:false,engaged:false,tucked:false,autoTucked:false,closed:false};
+  var yAtExpand=0, tapPoll=null, tapT=null;
+  function cls(n,on){ root.classList.toggle(n,!!on); }
+  function q(x){ return root.querySelector(x); }
+  function ensureSrc(){ if(!frame.getAttribute('src')) frame.setAttribute('src',BASE); }
+
+  // Geometry in px so every state animates between real positions. Video is 16:9
+  function layout(){
+    var vw=document.documentElement.clientWidth, vh=window.innerHeight, m=vw<768, s=root.style;
+    var barOn=bar && getComputedStyle(bar).display!=='none';
+    var cw=m?(vw<360?150:172):(vw<1024?240:280);
+    // Mobile: sit above the sticky action bar and the WhatsApp button (both bottom right)
+    var cb=m?((barOn?Math.round(bar.getBoundingClientRect().height):0)+(wa?Math.round(wa.getBoundingClientRect().height)+14:0)+12):24;
+    var over=10*2+44+8+12+48, v, w, r, b;
+    if(m){ v=Math.min(vw-24-20,(vh-24-over)*16/9); }
+    else{ v=Math.min(820,vw-48-20,(vh-48-over)*16/9); }
+    v=Math.max(200,Math.floor(v)); w=v+20; r=Math.round((vw-w)/2); b=Math.max(12,Math.round((vh-(over+v*9/16))/2));
+    s.setProperty('--c-w',cw+'px'); s.setProperty('--c-r',(m?12:24)+'px'); s.setProperty('--c-b',cb+'px');
+    s.setProperty('--x-w',w+'px'); s.setProperty('--x-r',r+'px'); s.setProperty('--x-b',b+'px');
+  }
+
+  function render(){
+    var showTeaser=st.passed;
+    var shown=!st.closed && (st.expanded || st.engaged || showTeaser);
+    if(shown) ensureSrc();
+    cls('is-shown',shown); cls('is-expanded',st.expanded); cls('is-engaged',st.engaged); cls('is-tucked',st.tucked||st.autoTucked);
+    var vis=shown && !st.expanded && !(st.tucked||st.autoTucked);
+    [].forEach.call(root.querySelectorAll('.cv-corner,.cv-pill'),function(b){ b.tabIndex=vis?0:-1; });
+    [].forEach.call(root.querySelectorAll('.cv-bar button,.cv-ctas a,.cv-ctas button'),function(b){ b.tabIndex=st.expanded?0:-1; });
+    q('.cv-tab').tabIndex=(shown && !st.expanded && (st.tucked||st.autoTucked))?0:-1;
+    frame.tabIndex=(st.expanded||(vis&&st.engaged))?0:-1;
+    if(st.expanded){ panel.setAttribute('role','dialog'); panel.setAttribute('aria-modal','true'); }
+    else{ panel.removeAttribute('role'); panel.removeAttribute('aria-modal'); }
+  }
+
+  function expand(fromTap){
+    if(st.closed) return;
+    ensureSrc();
+    st.engaged=true; st.expanded=true; st.tucked=false; st.autoTucked=false; yAtExpand=window.scrollY;
+    layout(); render();
+    if(!fromTap) setTimeout(function(){ var b=q('[data-cv="min"]'); if(b&&st.expanded) b.focus({preventScroll:true}); },60);
+  }
+  function minimise(moveFocus){
+    if(!st.expanded) return;
+    st.expanded=false; layout(); render();
+    if(moveFocus!==false){ var p=q('.cv-pill'); setTimeout(function(){ if(p) p.focus({preventScroll:true}); },60); }
+  }
+  function close(){
+    st.closed=true; st.expanded=false; render(); cls('is-closed',true); clearInterval(tapPoll);
+    frame.setAttribute('src','about:blank');
+    try{ sessionStorage.setItem(KEY,'1'); }catch(e){}
+  }
+  function tuck(){ st.tucked=true; render(); setTimeout(function(){ q('.cv-tab').focus({preventScroll:true}); },60); }
+  function untuck(){ st.tucked=false; st.autoTucked=false; render(); setTimeout(function(){ q('.cv-pill').focus({preventScroll:true}); },60); }
+
+  // One tap on the small card: Cineo plays it with sound, focus moves into the iframe, then the card grows (wait so the tap reaches play first)
+  function tapCheck(){
+    if(tapT||st.engaged||st.expanded||st.closed||st.tucked||st.autoTucked||!root.classList.contains('is-shown')) return;
+    if(document.activeElement===frame) tapT=setTimeout(function(){ tapT=null; if(!st.engaged&&!st.expanded&&!st.closed) expand(true); },450);
+  }
+  addEventListener('blur',function(){ setTimeout(tapCheck,0); });
+  tapPoll=setInterval(function(){ if(st.engaged||st.closed){ clearInterval(tapPoll); return; } tapCheck(); },250);
+
+  root.addEventListener('click',function(e){
+    var b=e.target.closest('[data-cv]'); if(!b||!root.contains(b)) return;
+    var a=b.getAttribute('data-cv');
+    if(a==='open') expand(false); else if(a==='min') minimise(); else if(a==='close') close(); else if(a==='tuck') tuck(); else if(a==='untuck') untuck();
+  });
+  backdrop.addEventListener('click',function(){ minimise(); });
+  // Book a Trial / Request a Callback: the form popup opens on top and the player steps down to the small card, still playing
+  [].forEach.call(root.querySelectorAll('[data-cv-cta]'),function(b){ b.addEventListener('click',function(){ minimise(false); }); });
+
+  document.addEventListener('keydown',function(e){
+    if(!st.expanded || (window.cncModalOpen&&window.cncModalOpen())) return;
+    if(e.key==='Escape'){ e.preventDefault(); minimise(); return; }
+    if(e.key==='Tab'){
+      var f=[].slice.call(panel.querySelectorAll('.cv-bar button,iframe,.cv-ctas a,.cv-ctas button')).filter(function(x){return x.offsetParent!==null});
+      var i=f.indexOf(document.activeElement);
+      if(e.shiftKey&&i<=0){ e.preventDefault(); f[f.length-1].focus(); }
+      else if(!e.shiftKey&&(i===f.length-1||i===-1)){ e.preventDefault(); f[0].focus(); }
+    }
+  });
+
+  // The card appears on the first scroll and then stays (only the visitor's minus or X moves it). Scrolling while big steps it down, still playing
+  var ticking=false;
+  function onScroll(){
+    if(ticking) return; ticking=true;
+    requestAnimationFrame(function(){
+      ticking=false;
+      if(!st.passed && window.scrollY>40){ st.passed=true; render(); }
+      if(st.expanded && Math.abs(window.scrollY-yAtExpand)>80) minimise(false);
+    });
+  }
+  addEventListener('scroll',onScroll,{passive:true});
+  addEventListener('resize',function(){ layout(); onScroll(); });
+  if(window.visualViewport) visualViewport.addEventListener('resize',layout);
+  ensureSrc();
+  layout(); render(); onScroll();
 })();
 </script>
 </body>
