@@ -62,9 +62,11 @@ module.exports = async (req, res) => {
   // Name the ad platform when the click IDs or UTM source show it.
   const t = Object.fromEntries(tracking);
   const src = (t.utm_source || '').toLowerCase();
-  let source = 'Ad Landing Page';
-  if (t.fbclid || /facebook|instagram|meta|fb|ig/.test(src)) source = 'Meta Ad';
-  else if (t.gclid || /google|youtube|adwords/.test(src) || /-google\//i.test(lead.page)) source = 'Google Ad';
+  // The -google pages are Google Ads pages; every other landing page is a Meta Ads page.
+  const googlePage = /-google\//i.test(lead.page);
+  let source = googlePage ? 'Google Ad' : 'Meta Ad';
+  if (!googlePage && t.gclid) source = 'Google Ad';
+  if (googlePage && t.fbclid) source = 'Meta Ad';
   const pageName = (/wedding/i.test(lead.page) ? 'Wedding Choreography' : /fees-timing/i.test(lead.page) ? 'Fees & Timing' : (lead.title || 'Landing page')) + (/-google\//i.test(lead.page) ? ', Google version' : '');
   const rows = [
     ['Source', `${source} (${pageName} page)`], ['Form', lead.form], ['Name', lead.name], ['Email', lead.email], ['Phone', lead.phone], ...(lead.eventDate ? [['Event date', lead.eventDate]] : []),
