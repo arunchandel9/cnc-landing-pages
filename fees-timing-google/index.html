@@ -364,6 +364,14 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 </script>
 <noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=799887097564715&amp;ev=PageView&amp;noscript=1"></noscript>
 <!-- End Meta Pixel -->
+<!-- Google Ads tag -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-760614527"></script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','AW-760614527');
+window.CNC_AW_SEND_TO='AW-760614527/d4AjCIDy4bcdEP-c2OoC';
+</script>
+<!-- End Google Ads tag -->
 </head>
 <body>
 
@@ -852,7 +860,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
         .then(function(){
           f.hidden=true;done.hidden=false;done.focus();
           if(window.fbq)fbq('track','Lead',{content_name:data.form_type});
-          if(window.gtag)gtag('event','generate_lead',{form_type:data.form_type});
+          if(window.gtag){gtag('event','generate_lead',{form_type:data.form_type});if(window.CNC_AW_SEND_TO)gtag('event','conversion',{send_to:window.CNC_AW_SEND_TO});}
           if(window.dataLayer)dataLayer.push({event:'lead_submit',form_type:data.form_type});
         })
         .catch(function(){err.textContent='We could not send your details. Please try again or call +91 9811866443.'})
